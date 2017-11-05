@@ -15,9 +15,5 @@ namespace FoodHunter.FoodHunterWeb.DataLayer.ModelClasses
         public string RestaurantName { get; set; }
         public string Location { get; set; }
         public List<Food> FoodMenu { get; set; }
-        [ForeignKey("ReviewId")]
-        public Review Review { get; set; }
-        [ForeignKey("RestaurantAdminId")]
-        public RestaurantAdmin RestaurantAdmin { get; set; }
     }
 }

@@ -7,7 +7,7 @@ using FoodHunter.FoodHunterWeb.DataLayer.ModelClasses;
 
 namespace FoodHunter.FoodHunterWeb.DataLayer.RepositoryInterfaces
 {
-    interface IFoodRepository
+    public interface IFoodRepository
     {
         List<Food> GetAll();
         Food Get(int id);

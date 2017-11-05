@@ -9,7 +9,7 @@ using FoodHunter.FoodHunterWeb.DataLayer.RepositoryInterfaces;
 
 namespace FoodHunter.FoodHunterWeb.DataLayer.Repositories
 {
-    class FoodRepository : IFoodRepository
+    public class FoodRepository : IFoodRepository
     {
         private readonly DataContext _context;
 

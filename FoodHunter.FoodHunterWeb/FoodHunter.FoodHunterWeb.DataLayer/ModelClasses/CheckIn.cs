@@ -12,9 +12,11 @@ namespace FoodHunter.FoodHunterWeb.DataLayer.ModelClasses
     {
         [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CheckInId { get; set; }
+        public int RestaurantId { get; set; }
+        public int UserId { get; set; }
         [ForeignKey("RestaurantId")]
         public Restaurant Restaurant { get; set; }
-        [ForeignKey("FoodieId")]
+        [ForeignKey("UserId")]
         public Foodie Foodie { get; set; }
     }
 }

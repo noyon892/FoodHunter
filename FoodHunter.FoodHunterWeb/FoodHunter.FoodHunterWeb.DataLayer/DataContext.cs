@@ -16,6 +16,5 @@ namespace FoodHunter.FoodHunterWeb.DataLayer
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<CheckIn> CheckIns { get; set; }
         public DbSet<Review> Reviews { get; set; }
-
     }
 }

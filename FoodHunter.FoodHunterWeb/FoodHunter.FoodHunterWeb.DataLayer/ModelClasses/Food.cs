@@ -15,9 +15,10 @@ namespace FoodHunter.FoodHunterWeb.DataLayer.ModelClasses
         public string FoodName { get; set; }
         public double FoodPrice { get; set; }
         public byte[] FoodPicture { get; set; }
-        [ForeignKey("RestaurantId")]
-        public Restaurant Restaurant { get; set; }      //Restaurant that hosts the food
         public int DiscoutPercentage { get; set; }      //If any offer is ruuning for discount
         public List<Review> Reviews { get; set; }       //Food review by users
+        public int RestaurantId { get; set; }
+        [ForeignKey("RestaurantId")]
+        public Restaurant Restaurant { get; set; }      //Restaurant that hosts the food
     }
 }

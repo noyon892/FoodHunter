@@ -12,14 +12,11 @@ namespace FoodHunter.FoodHunterWeb.DataLayer.ModelClasses
     {
         [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ReviewId { get; set; }
-        [ForeignKey("ReviewerId")]
-        public Foodie Reviewer { get; set; }
         public string Comment { get; set; }
         [Range(1,10)]
         public byte Rating { get; set; }
-        [ForeignKey("RestaurantId")]
-        public Restaurant Restaurant { get; set; }
-        [ForeignKey("FoodId")]
-        public Food Food { get; set; }
+        public int UserId { get; set; }
+        [ForeignKey("UserId")]
+        public Foodie Reviewer { get; set; }
     }
 }
