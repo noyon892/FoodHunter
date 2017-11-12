@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using FoodHunter.FoodHunterWeb.DataLayer;
 using FoodHunter.FoodHunterWeb.DataLayer.ModelClasses;
 using FoodHunter.FoodHunterWeb.DataLayer.RepositoryInterfaces;
 

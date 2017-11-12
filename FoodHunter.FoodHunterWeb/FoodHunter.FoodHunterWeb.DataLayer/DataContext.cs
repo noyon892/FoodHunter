@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FoodHunter.FoodHunterWeb.DataLayer;
 using FoodHunter.FoodHunterWeb.DataLayer.ModelClasses;
 
 namespace FoodHunter.FoodHunterWeb.DataLayer

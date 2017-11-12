@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using FoodHunter.FoodHunterWeb.DataLayer.RepositoryInterfaces;
-using FoodHunter.FoodHunterWeb.DataLayer.Repositories;
+using FoodHunter.FoodHunterWeb.DataLayer;
 
 namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 {

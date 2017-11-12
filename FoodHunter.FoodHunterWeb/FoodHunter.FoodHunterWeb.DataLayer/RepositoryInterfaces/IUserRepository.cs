@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using FoodHunter.FoodHunterWeb.DataLayer;
 using FoodHunter.FoodHunterWeb.DataLayer.ModelClasses;
 
 namespace FoodHunter.FoodHunterWeb.DataLayer.RepositoryInterfaces
