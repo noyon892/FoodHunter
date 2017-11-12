@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FoodHunter.FoodHunterWeb.DataLayer;
+using FoodHunter.FoodHunterWeb.DataLayer.Repositories;
+using FoodHunter.FoodHunterWeb.DataLayer.RepositoryInterfaces;
 
 namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 {
