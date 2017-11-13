@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using FoodHunter.FoodHunterWeb.DataLayer;
 
-namespace FoodHunter.FoodHunterWeb.DataLayer.ModelClasses
+namespace FoodHunter.FoodHunterWeb.DataLayer
 {
     public class Foodie : User
     {
-        public Foodie()
+        internal Foodie()
         {
             Type = UserType.Foodie;
         }

@@ -3,12 +3,12 @@ using FoodHunter.FoodHunterWeb.DataLayer;
 
 namespace FoodHunter.FoodHunterWeb.DataLayer
 {
-    public interface IFoodRepository
+    public interface INewsRepository
     {
-        List<Food> GetAll();
-        Food Get(int id);
-        int Insert(Food food);
-        int Update(Food food);
+        List<News> GetAll();
+        News Get(int id);
+        int Insert(News news);
+        int Update(News news);
         int Delete(int id);
     }
 }

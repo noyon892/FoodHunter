@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodHunter.FoodHunterWeb.DataLayer", "FoodHunter.FoodHunterWeb.DataLayer\FoodHunter.FoodHunterWeb.DataLayer.csproj", "{27FBAB7E-9240-42DB-B5B2-4EA778971BBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodHunter.FoodHunterWeb.AppLayer", "FoodHunter.FoodHunterWeb.AppLayer\FoodHunter.FoodHunterWeb.AppLayer.csproj", "{65DFB86F-7762-46D8-9656-C7FCB46353C8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodHunter.FoodHunterWeb.Presentation", "FoodHunter.FoodHunterWeb.AppLayer\FoodHunter.FoodHunterWeb.Presentation.csproj", "{65DFB86F-7762-46D8-9656-C7FCB46353C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

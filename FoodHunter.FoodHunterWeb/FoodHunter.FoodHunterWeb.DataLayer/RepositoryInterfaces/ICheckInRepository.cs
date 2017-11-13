@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 using FoodHunter.FoodHunterWeb.DataLayer;
-using FoodHunter.FoodHunterWeb.DataLayer.ModelClasses;
 
-namespace FoodHunter.FoodHunterWeb.DataLayer.RepositoryInterfaces
+namespace FoodHunter.FoodHunterWeb.DataLayer
 {
     public interface ICheckInRepository
     {
         List<CheckIn> GetAll();
         CheckIn Get(int id);
-        int Insert(CheckIn food);
-        int Update(CheckIn food);
+        int Insert(CheckIn checkIn);
+        int Update(CheckIn checkIn);
         int Delete(int id);
     }
 }

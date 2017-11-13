@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using FoodHunter.FoodHunterWeb;
 using FoodHunter.FoodHunterWeb.DataLayer;
-using FoodHunter.FoodHunterWeb.DataLayer.Repositories;
-using FoodHunter.FoodHunterWeb.DataLayer.RepositoryInterfaces;
 
 namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 {
     public class HomeController : Controller
     {
-        private IFoodRepository repo = new FoodRepository();
+        private readonly IFoodRepository _repo = Factory.GetFoodRepository();
         // GET: Home
         public ActionResult Index()
         {
-            return View(this.repo.GetAll());
+            return RedirectToAction("index","News");
         }
     }
 }

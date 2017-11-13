@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using FoodHunter.FoodHunterWeb.DataLayer;
-using FoodHunter.FoodHunterWeb.DataLayer.ModelClasses;
 
-namespace FoodHunter.FoodHunterWeb.DataLayer.RepositoryInterfaces
+namespace FoodHunter.FoodHunterWeb.DataLayer
 {
-    interface IReviewRepository
+    public interface IReviewRepository
     {
         List<Review> GetAll();
         Review Get(int id);

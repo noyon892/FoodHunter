@@ -1,0 +1,29 @@
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace FoodHunter.FoodHunterWeb.DataLayer
+{
+    public class User
+    {
+        internal User()
+        {
+        }
+
+        [Key]
+        public int UserId { get; set; }
+        [ForeignKey("UserId")]
+        public Login Login { get; set; }
+        [Required]
+        public string UserName { get; set; }
+        [EmailAddress]
+        public string Email { get; set; }
+        [RegularExpression("^([+]?88)?01[15-9]d{8}$", ErrorMessage = "Number format is not valid")]
+        public string PhoneNo { get; set; }
+        [MinLength(6)]
+        public string FullName { get; set; }
+        public string ProfilePicture { get; set; }
+        public string Address { get; set; }
+        [NotMapped]
+        public UserType Type { get; set; }
+    }
+}

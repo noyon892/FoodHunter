@@ -1,17 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace FoodHunter.FoodHunterWeb.DataLayer.ModelClasses
+namespace FoodHunter.FoodHunterWeb.DataLayer
 {
     public class CheckIn
     {
+        internal CheckIn()
+        {
+        }
+
         [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CheckInId { get; set; }
+        public DateTime CheckInTime { get; set; }
         public int RestaurantId { get; set; }
         public int UserId { get; set; }
         [ForeignKey("RestaurantId")]

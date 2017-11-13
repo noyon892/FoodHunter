@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using FoodHunter.FoodHunterWeb.DataLayer;
-using FoodHunter.FoodHunterWeb.DataLayer.ModelClasses;
-using FoodHunter.FoodHunterWeb.DataLayer.RepositoryInterfaces;
 
-namespace FoodHunter.FoodHunterWeb.DataLayer.Repositories
+namespace FoodHunter.FoodHunterWeb.DataLayer
 {
-    public class CheckInRepository : ICheckInRepository
+    class CheckInRepository : ICheckInRepository
     {
         private readonly DataContext _context;
 
         public CheckInRepository()
         {
-            _context = new DataContext();
+            _context = DataContext.GetInstance();
         }
 
         public List<CheckIn> GetAll()
@@ -31,7 +26,7 @@ namespace FoodHunter.FoodHunterWeb.DataLayer.Repositories
 
         public int Insert(CheckIn checkIn)
         {
-            this._context.CheckIns.Add(checkIn);
+            _context.CheckIns.Add(checkIn);
 
             return _context.SaveChanges();
         }
