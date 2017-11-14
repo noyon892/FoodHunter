@@ -33,7 +33,7 @@ namespace FoodHunter.FoodHunterWeb.DataLayer
 
         public int Update(Food food)
         {
-            Review foodToUpdate = _context.Reviews.SingleOrDefault(e => e.ReviewId == food.FoodId);
+            Food foodToUpdate = _context.Foods.SingleOrDefault(e => e.FoodId == food.FoodId);
             foreach (PropertyInfo property in typeof(Food).GetProperties())
             {
                 property.SetValue(foodToUpdate, property.GetValue(food, null), null);

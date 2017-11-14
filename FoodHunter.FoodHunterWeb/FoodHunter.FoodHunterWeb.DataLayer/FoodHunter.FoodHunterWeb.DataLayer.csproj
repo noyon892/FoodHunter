@@ -55,12 +55,12 @@
     <Compile Include="Models\CheckIn.cs" />
     <Compile Include="Models\Food.cs" />
     <Compile Include="Models\Foodie.cs" />
-    <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\RestaurantAdmin.cs" />
     <Compile Include="Models\Review.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Profile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CheckInRepository.cs" />
     <Compile Include="Repositories\FoodieRepository.cs" />
@@ -69,6 +69,7 @@
     <Compile Include="Repositories\RestaurantRepository.cs" />
     <Compile Include="Repositories\ReviewRepository.cs" />
     <Compile Include="Repositories\AppAdminRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="RepositoryInterfaces\IAppAdminRepository.cs" />
     <Compile Include="RepositoryInterfaces\ICheckInRepository.cs" />
     <Compile Include="RepositoryInterfaces\IFoodRepository.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="RepositoryInterfaces\IReviewRepository.cs" />
     <Compile Include="RepositoryInterfaces\IFoodieRepository.cs" />
     <Compile Include="Repositories\RestaurantAdminRepository.cs" />
+    <Compile Include="RepositoryInterfaces\IUserReposiroty.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

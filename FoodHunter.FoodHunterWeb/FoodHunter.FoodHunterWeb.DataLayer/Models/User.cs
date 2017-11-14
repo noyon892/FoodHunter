@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FoodHunter.FoodHunterWeb.DataLayer
@@ -7,23 +9,20 @@ namespace FoodHunter.FoodHunterWeb.DataLayer
     {
         internal User()
         {
+            RegisteredOn = DateTime.Now;
+            CurrentUserStatus = UserStatus.Active;
         }
 
-        [Key]
+        [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
-        [ForeignKey("UserId")]
-        public Login Login { get; set; }
         [Required]
         public string UserName { get; set; }
-        [EmailAddress]
-        public string Email { get; set; }
-        [RegularExpression("^([+]?88)?01[15-9]d{8}$", ErrorMessage = "Number format is not valid")]
-        public string PhoneNo { get; set; }
-        [MinLength(6)]
-        public string FullName { get; set; }
-        public string ProfilePicture { get; set; }
-        public string Address { get; set; }
-        [NotMapped]
+        public string Password { get; set; }
+        [Column(TypeName = "datetime2")]
+        public DateTime? RegisteredOn { get; set; }
+        [Column(TypeName = "datetime2")]
+        public DateTime LastActivity { get; set; }
+        public UserStatus CurrentUserStatus { get; set; }
         public UserType Type { get; set; }
     }
 }

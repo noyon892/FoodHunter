@@ -1,6 +1,6 @@
 ﻿namespace FoodHunter.FoodHunterWeb.AppLayer
 {
-    public class GeneralNewsViewModel
+    public class NewsGeneralViewModel
     {
         public string NewsPicture { get; set; }
         public string Title { get; set; }

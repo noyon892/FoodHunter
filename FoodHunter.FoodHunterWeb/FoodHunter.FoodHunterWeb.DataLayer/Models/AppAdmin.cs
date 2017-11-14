@@ -1,10 +1,6 @@
 ﻿namespace FoodHunter.FoodHunterWeb.DataLayer
 {
-    public class AppAdmin : User
+    public class AppAdmin : Profile
     {
-        internal AppAdmin()
-        {
-            Type = UserType.AppAdmin;
-        }
     }
 }

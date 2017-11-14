@@ -12,6 +12,7 @@ namespace FoodHunter.FoodHunterWeb.DataLayer
             return Instance ?? (Instance = new DataContext());
         }
 
+        public DbSet<User> Users { get; set; }
         public DbSet<AppAdmin> AppAdmins { get; set; }
         public DbSet<RestaurantAdmin> RestaurantAdmins { get; set; }
         public DbSet<Foodie> Foodies { get; set; }

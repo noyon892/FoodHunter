@@ -3,13 +3,8 @@ using FoodHunter.FoodHunterWeb.DataLayer;
 
 namespace FoodHunter.FoodHunterWeb.DataLayer
 {
-    public class Foodie : User
+    public class Foodie : Profile
     {
-        internal Foodie()
-        {
-            Type = UserType.Foodie;
-        }
-
         public List<CheckIn> CheckIns { get; set; }
         public List<Review> Reviews { get; set; }
     }

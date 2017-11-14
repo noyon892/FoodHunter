@@ -2,13 +2,8 @@
 
 namespace FoodHunter.FoodHunterWeb.DataLayer
 {
-    public class RestaurantAdmin : User
+    public class RestaurantAdmin : Profile
     {
-        internal RestaurantAdmin()
-        {
-            Type = UserType.RestaurantAdmin;
-        }
-
         public List<Restaurant> Restaurants { get; set; }
     }
 }
