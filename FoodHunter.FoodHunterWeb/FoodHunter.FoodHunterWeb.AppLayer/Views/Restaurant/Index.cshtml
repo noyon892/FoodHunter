@@ -1,0 +1,80 @@
+﻿@model FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details.RestaurantDetailsViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <h4>RestaurantDetailsViewModel</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.RestaurantBase.RestaurantName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RestaurantBase.RestaurantName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.RestaurantBase.CoverPicture)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RestaurantBase.CoverPicture)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.RestaurantBase.Location)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RestaurantBase.Location)
+            </dd>
+            <dt>
+                Restaurant Admin
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RestaurantAdminBase.FirstName + " " +model.RestaurantAdminBase.LastName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.RestaurantAdminBase.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RestaurantAdminBase.Email)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.RestaurantAdminBase.PhoneNo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RestaurantAdminBase.PhoneNo)
+            </dd>
+        </dl>
+        
+        <table class="table">
+            @foreach (var item in Model.RestaurantBase.FoodMenu)
+            {
+                <tr>
+                    <td>@item.FoodPicture</td>
+                    <td>@item.FoodName</td>
+                    <td>@item.FoodPrice</td>
+                </tr>
+            }
+            
+        </table>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

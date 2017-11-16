@@ -109,14 +109,19 @@
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
+    <Compile Include="Controllers\RestaurantController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Base\NewsBaseViewModel.cs" />
     <Compile Include="ViewModels\Base\ProfileBaseViewModel.cs" />
+    <Compile Include="ViewModels\Base\RestaurantAdminBaseViewModel.cs" />
+    <Compile Include="ViewModels\Base\RestaurantBaseViewModel.cs" />
     <Compile Include="ViewModels\Create\NewsCreateViewModel.cs" />
     <Compile Include="ViewModels\Details\ProfileDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Details\RestaurantDetailsViewModel.cs" />
     <Compile Include="ViewModels\Edit\ProfileEditViewModel.cs" />
+    <Compile Include="ViewModels\Edit\RestaurantEditViewModel.cs" />
     <Compile Include="ViewModels\List\NewsListViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
@@ -126,13 +131,13 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <None Include="packages.config" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\News\Create.cshtml" />
     <Content Include="Views\Registration\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\Edit.cshtml" />
+    <Content Include="Views\Restaurant\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -143,6 +148,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="ViewModels\Delete\" />
+    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FoodHunter.FoodHunterWeb.DataLayer\FoodHunter.Web.DataLayer.csproj">
