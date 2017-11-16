@@ -21,7 +21,7 @@ namespace FoodHunter.Web.DataLayer
         public string Password { get; set; }
         [Column(TypeName = "datetime2")]
         public DateTime RegisteredOn { get; set; }
-        [Column(TypeName = "datetime2")]
+        [Column(TypeName = "datetime2")][NotMapped]
         public DateTime LastActivity { get; set; }
         public UserStatus CurrentUserStatus { get; set; }
         public UserType Type { get; set; }
