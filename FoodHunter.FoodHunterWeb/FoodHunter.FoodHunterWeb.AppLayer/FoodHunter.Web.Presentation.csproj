@@ -105,15 +105,23 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\News\NewsAdminViewModel.cs" />
-    <Compile Include="Models\News\NewsGeneralViewModel.cs" />
-    <Compile Include="Models\Registration\RegistrationViewModel.cs" />
+    <Compile Include="ViewModels\Base\NewsBaseViewModel.cs" />
+    <Compile Include="ViewModels\Base\ProfileBaseViewModel.cs" />
+    <Compile Include="ViewModels\Create\NewsCreateViewModel.cs" />
+    <Compile Include="ViewModels\Details\ProfileDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Edit\ProfileEditViewModel.cs" />
+    <Compile Include="ViewModels\List\NewsListViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Update\ProfileUpdateViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -122,6 +130,9 @@
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\News\Create.cshtml" />
     <Content Include="Views\Registration\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Profile\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -131,11 +142,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ViewModels\Delete\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FoodHunter.FoodHunterWeb.DataLayer\FoodHunter.FoodHunterWeb.DataLayer.csproj">
+    <ProjectReference Include="..\FoodHunter.FoodHunterWeb.DataLayer\FoodHunter.Web.DataLayer.csproj">
       <Project>{27fbab7e-9240-42db-b5b2-4ea778971bbf}</Project>
-      <Name>FoodHunter.FoodHunterWeb.DataLayer</Name>
+      <Name>FoodHunter.Web.DataLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

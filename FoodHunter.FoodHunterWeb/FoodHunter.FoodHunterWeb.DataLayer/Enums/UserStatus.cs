@@ -1,4 +1,4 @@
-﻿namespace FoodHunter.FoodHunterWeb.DataLayer
+﻿namespace FoodHunter.Web.DataLayer
 {
     public enum UserStatus
     {

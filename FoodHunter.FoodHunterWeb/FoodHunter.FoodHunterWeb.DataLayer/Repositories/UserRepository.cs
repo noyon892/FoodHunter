@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodHunter.FoodHunterWeb.DataLayer.Repositories
+namespace FoodHunter.Web.DataLayer
 {
     class UserRepository : IUserReposiroty
     {
@@ -13,7 +13,7 @@ namespace FoodHunter.FoodHunterWeb.DataLayer.Repositories
 
         public UserRepository()
         {
-            _context = DataContext.GetInstance();
+            _context = new DataContext();
         }
 
 

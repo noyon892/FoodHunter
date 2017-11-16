@@ -4,12 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using FoodHunter.FoodHunterWeb.DataLayer;
+using FoodHunter.Web.DataLayer;
 
-namespace FoodHunter.FoodHunterWeb.AppLayer
+namespace FoodHunter.Web.AppLayer
 {
     public class RegistrationViewModel
     {
+        [Required]
         public string UserName { get; set; }
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }

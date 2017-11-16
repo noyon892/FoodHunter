@@ -1,8 +1,8 @@
 ﻿using System.Web.Mvc;
-using FoodHunter.FoodHunterWeb;
-using FoodHunter.FoodHunterWeb.DataLayer;
+using FoodHunter.Web;
+using FoodHunter.Web.DataLayer;
 
-namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
+namespace FoodHunter.Web.AppLayer.Controllers
 {
     public class HomeController : Controller
     {

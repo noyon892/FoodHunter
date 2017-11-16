@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using FoodHunter.FoodHunterWeb.DataLayer;
+using FoodHunter.Web.DataLayer;
 
-namespace FoodHunter.FoodHunterWeb.DataLayer
+namespace FoodHunter.Web.DataLayer
 {
     class RestaurantRepository : IRestaurantRepository
     {
         readonly DataContext _context;
         public RestaurantRepository()
         {
-            _context = DataContext.GetInstance();
+            _context = new DataContext();
         }
 
         public List<Restaurant> GetAll()

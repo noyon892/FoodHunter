@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FoodHunter.FoodHunterWeb.DataLayer
+namespace FoodHunter.Web.DataLayer
 {
     public class Restaurant
     {

@@ -5,10 +5,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using FoodHunter.FoodHunterWeb;
-using FoodHunter.FoodHunterWeb.DataLayer;
+using FoodHunter.Web;
+using FoodHunter.Web.DataLayer;
 
-namespace FoodHunter.FoodHunterWeb.AppLayer
+namespace FoodHunter.Web.AppLayer
 {
     public class MvcApplication : System.Web.HttpApplication
     {

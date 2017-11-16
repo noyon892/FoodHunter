@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace FoodHunter.FoodHunterWeb.DataLayer
+namespace FoodHunter.Web.DataLayer
 {
     public interface IUserReposiroty
     {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
-using FoodHunter.FoodHunterWeb.DataLayer;
+using FoodHunter.Web.DataLayer;
 
-namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
+namespace FoodHunter.Web.AppLayer.Controllers
 {
     public class RegistrationController : Controller
     {
@@ -14,7 +14,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 
         public RegistrationController()
         {
-            _repository = Factory.UserReposiroty();
+            _repository = Factory.GetUserReposiroty();
         }
 
 
@@ -31,11 +31,19 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
             var config = new MapperConfiguration(cfg => cfg.CreateMap<RegistrationViewModel, User>());
             var mapper = config.CreateMapper();
 
-            //copy value
-            User user = mapper.Map<User>(registrationViewModel);
-            _repository.Insert(user);
-            
-            return View(new RegistrationViewModel());
+            if (ModelState.IsValid)
+            {
+                //copy value
+                User user = mapper.Map<User>(registrationViewModel);
+                user.RegisteredOn = DateTime.Now;
+                user.CurrentUserStatus = UserStatus.Active;
+                _repository.Insert(user);
+
+                return RedirectToAction("Index", "Login");
+            }
+
+            ModelState.AddModelError("", "Fill all the fields carefully");
+            return View();
         }
     }
 }

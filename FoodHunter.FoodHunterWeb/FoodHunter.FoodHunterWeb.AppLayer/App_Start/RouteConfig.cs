@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace FoodHunter.FoodHunterWeb.AppLayer
+namespace FoodHunter.Web.AppLayer
 {
     public class RouteConfig
     {

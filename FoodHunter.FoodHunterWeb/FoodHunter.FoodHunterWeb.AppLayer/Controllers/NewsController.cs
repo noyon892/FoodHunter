@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Web.DynamicData;
 using System.Web.Mvc;
-using FoodHunter.FoodHunterWeb.DataLayer;
 using AutoMapper;
+using FoodHunter.Web.AppLayer.ViewModels.List;
+using FoodHunter.Web.DataLayer;
 
-namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
+namespace FoodHunter.Web.AppLayer.Controllers
 {
     public class NewsController : Controller
     {
@@ -20,15 +21,15 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
         public ActionResult Index()
         {
             //Create Map
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<News,NewsGeneralViewModel>());
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<News,NewsListViewModel>());
             var mapper = config.CreateMapper();
             //Copy values
-            List<NewsGeneralViewModel> viewModelsList = new List<NewsGeneralViewModel>();
+            List<NewsListViewModel> viewModelsList = new List<NewsListViewModel>();
 
             foreach (News news in _repository.GetAll())
             {
-                NewsGeneralViewModel newsGeneralViewModel = mapper.Map<NewsGeneralViewModel>(news);
-                viewModelsList.Add(newsGeneralViewModel);
+                NewsListViewModel newsListViewModel = mapper.Map<NewsListViewModel>(news);
+                viewModelsList.Add(newsListViewModel);
             }
 
             return View(viewModelsList);
@@ -43,13 +44,13 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(NewsGeneralViewModel newsGeneralViewModel)
+        public ActionResult Create(NewsListViewModel newsListViewModel)
         {
             //Create Map
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<NewsGeneralViewModel, News>());
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<NewsListViewModel, News>());
             var mapper = config.CreateMapper();
 
-            News news = mapper.Map<News>(newsGeneralViewModel);
+            News news = mapper.Map<News>(newsListViewModel);
             _repository.Insert(news);
             
             return RedirectToAction("Index");

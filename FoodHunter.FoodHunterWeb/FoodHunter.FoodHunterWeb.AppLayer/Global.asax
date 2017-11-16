@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="FoodHunter.FoodHunterWeb.AppLayer.MvcApplication" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="FoodHunter.Web.AppLayer.MvcApplication" Language="C#" %>

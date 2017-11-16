@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using FoodHunter.FoodHunterWeb.DataLayer;
+using FoodHunter.Web.DataLayer;
 
-namespace FoodHunter.FoodHunterWeb.DataLayer
+namespace FoodHunter.Web.DataLayer
 {
     class NewsRepository : INewsRepository
     {
@@ -11,7 +11,7 @@ namespace FoodHunter.FoodHunterWeb.DataLayer
 
         public NewsRepository()
         {
-            _context = DataContext.GetInstance();
+            _context = new DataContext();
         }
         public List<News> GetAll()
         {

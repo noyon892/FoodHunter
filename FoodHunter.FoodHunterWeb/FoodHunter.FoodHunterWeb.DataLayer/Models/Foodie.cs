@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using FoodHunter.FoodHunterWeb.DataLayer;
+using FoodHunter.Web.DataLayer;
 
-namespace FoodHunter.FoodHunterWeb.DataLayer
+namespace FoodHunter.Web.DataLayer
 {
-    public class Foodie : Profile
+    public class Foodie : UserProfile
     {
         public List<CheckIn> CheckIns { get; set; }
         public List<Review> Reviews { get; set; }
