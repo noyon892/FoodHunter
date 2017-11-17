@@ -102,6 +102,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -147,10 +148,7 @@
     <Compile Include="ViewModels\Details\RestaurantDetailsViewModel.cs" />
     <Compile Include="ViewModels\Edit\ProfileEditViewModel.cs" />
     <Compile Include="ViewModels\Edit\RestaurantEditViewModel.cs" />
-    <Compile Include="ViewModels\List\ApprovalListViewModel.cs" />
     <Compile Include="ViewModels\List\NewsListViewModel.cs" />
-    <Compile Include="ViewModels\List\RestaurantListViewModel.cs" />
-    <Compile Include="ViewModels\List\UserListViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -175,7 +173,7 @@
     <Content Include="Views\Food\Details.cshtml" />
     <Content Include="Views\Restaurant\Create.cshtml" />
     <Content Include="Views\Restaurant\Edit.cshtml" />
-    <Content Include="Views\AppAdmin\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -186,7 +184,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="ViewModels\Delete\" />
-    <Folder Include="Views\Home\" />
+    <Folder Include="Views\AppAdmin\" />
     <Folder Include="Views\Resturent\" />
   </ItemGroup>
   <ItemGroup>
