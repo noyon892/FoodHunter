@@ -7,15 +7,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details;
 
 namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 {
     public class FoodController : Controller
     {
         IFoodRepository _repository;
+        private IReviewRepository _reviewRepository;
         public FoodController()
         {
             _repository = Factory.GetFoodRepository();
+            _reviewRepository = Factory.GetReviewRepository();
         }
 
         // GET: Food
@@ -62,11 +65,34 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
         }
 
         [HttpGet]
-        public ActionResult Details()
+        public ActionResult Details(int id)
         {
-            return View();
+            Food food = _repository.Get(id);
+            food.Reviews = (List<Review>)_reviewRepository.GetAll().Where(r => r.FoodId == id);
+
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Food, FoodDetailsViewModel>());
+            var mapper = config.CreateMapper();
+
+            //Copy values
+            FoodDetailsViewModel foodDetails = mapper.Map<FoodDetailsViewModel>(food);
+
+            return View(foodDetails);
         }
 
+        [HttpPost]
+        public ActionResult Details(int id, ReviewCreateViewModel input)
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<ReviewCreateViewModel, Review>());
+            var mapper = config.CreateMapper();
 
+            //Copy values
+            Review reviewToCreate = mapper.Map<Review>(input);
+            reviewToCreate.UserId = Convert.ToInt32(Session["UserId"]);
+            reviewToCreate.FoodId = id;
+
+            _reviewRepository.Insert(reviewToCreate);
+
+            return View();
+        }
     }
 }

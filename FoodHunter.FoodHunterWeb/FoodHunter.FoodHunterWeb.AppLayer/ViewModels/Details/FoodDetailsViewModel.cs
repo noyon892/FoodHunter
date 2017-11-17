@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Create;
 
 namespace FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details
 {
@@ -11,5 +12,6 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details
     {
         public Restaurant Restaurant { get; set; }
         public List<Review> Reviews { get; set; }
+        public ReviewCreateViewModel ReviewCreate { get; set; }
     }
 }
