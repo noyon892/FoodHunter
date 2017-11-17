@@ -79,7 +79,7 @@
     <Compile Include="RepositoryInterfaces\INewsRepository.cs" />
     <Compile Include="RepositoryInterfaces\IRestaurantRepository.cs" />
     <Compile Include="RepositoryInterfaces\IReviewRepository.cs" />
-    <Compile Include="RepositoryInterfaces\IUserReposiroty.cs" />
+    <Compile Include="RepositoryInterfaces\IUserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

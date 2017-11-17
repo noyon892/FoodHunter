@@ -2,7 +2,7 @@
 
 namespace FoodHunter.Web.DataLayer
 {
-    public interface IUserReposiroty
+    public interface IUserRepository
     {
         List<User> GetAll();
         User Get(int id);

@@ -2,7 +2,7 @@
 {
     public class Factory
     {
-        public static IUserReposiroty GetUserReposiroty() { return new UserRepository();}
+        public static IUserRepository GetUserReposiroty() { return new UserRepository();}
         public static IUserProfileRepository GetUserProfileRepository(){ return new UserProfileRepository(); }
         public static IFoodRepository GetFoodRepository() { return new FoodRepository();}
         public static IRestaurantRepository GetRestaurantRepository() { return new RestaurantRepository();}

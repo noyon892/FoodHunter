@@ -11,6 +11,6 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.ViewModels.List
         public string UserName { get; set; }
         public int UserId { get; set; }
         public UserType Type { get; set; }
-        public UserStatus Status { get; set; }
+        public Status CurrentStatus { get; set; }
     }
 }

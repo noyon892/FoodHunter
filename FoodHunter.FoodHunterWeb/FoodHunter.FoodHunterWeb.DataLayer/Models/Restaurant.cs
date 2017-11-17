@@ -17,5 +17,6 @@ namespace FoodHunter.Web.DataLayer
         public string Location { get; set; }
         public List<Food> FoodMenu { get; set; }
         public List<Review> Reviews { get; set; }
+        public Status CurrentStatus { get; set; }
     }
 }
