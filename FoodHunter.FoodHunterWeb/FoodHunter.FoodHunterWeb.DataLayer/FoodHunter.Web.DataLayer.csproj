@@ -51,7 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enums\UserStatus.cs" />
+    <Compile Include="Enums\Status.cs" />
     <Compile Include="Enums\UserType.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="DataContext.cs" />

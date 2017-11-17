@@ -13,5 +13,20 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public ActionResult UserList()
+        {
+            return View();
+        }
+        [HttpGet]
+        public ActionResult RestaurantList()
+        {
+            return View();
+        }
+        [HttpGet]
+        public ActionResult ApprovalList()
+        {
+            return View();
+        }
     }
 }
