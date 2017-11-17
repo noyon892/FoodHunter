@@ -10,7 +10,6 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details
     public class RestaurantAdminDetailsViewModel : RestaurantAdminBaseViewModel
     {
         public List<Restaurant> Restaurants { get; set; }
-        [EmailAddress]
-        public string Email { get; set; }
+        
     }
 }

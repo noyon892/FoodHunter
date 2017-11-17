@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details;
+using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Edit;
 using FoodHunter.Web.DataLayer;
 using System;
 using System.Collections.Generic;
@@ -50,26 +51,26 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
             {
                 _profile = _repository.Get(Convert.ToInt32(Session["UserId"]));
 
-                var config = new MapperConfiguration(cfg => cfg.CreateMap<UserProfile, ProfileEditViewModel>());
+                var config = new MapperConfiguration(cfg => cfg.CreateMap<UserProfile, RestaurantAdminEditViewModel>());
                 var mapper = config.CreateMapper();
                 //Copy values
 
-                ProfileEditViewModel profileEditViewModel = mapper.Map<ProfileEditViewModel>(_profile);
+                RestaurantAdminEditViewModel restaurantAdminEditViewModel = mapper.Map<RestaurantAdminEditViewModel>(_profile);
 
-                return View(profileEditViewModel);
+                return View(restaurantAdminEditViewModel);
             }
 
             return RedirectToAction("Index", "Login");
         }
 
         [HttpPost]
-        public ActionResult Edit(ProfileEditViewModel input)
+        public ActionResult Edit(RestaurantAdminEditViewModel input)
         {
             if (Session["UserId"] != null)
             {
                 _profile = _repository.Get(Convert.ToInt32(Session["UserId"]));
 
-                var config = new MapperConfiguration(cfg => cfg.CreateMap<ProfileEditViewModel, UserProfile>());
+                var config = new MapperConfiguration(cfg => cfg.CreateMap<RestaurantAdminEditViewModel, UserProfile>());
                 var mapper = config.CreateMapper();
                 //Copy values
 
