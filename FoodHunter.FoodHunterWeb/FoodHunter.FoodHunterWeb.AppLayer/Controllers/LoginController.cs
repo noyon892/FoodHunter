@@ -33,7 +33,21 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
                 Session["UserName"] = user.UserName;
                 Session["Email"] = user.Email;
                 Session["UserType"] = user.Type;
-                return RedirectToAction("Index", "Profile");
+
+                if(user.Type == UserType.Foodie)
+                {
+                    return RedirectToAction("Index", "Profile");
+                }
+                else if (user.Type == UserType.RestaurantAdmin)
+                {
+                    return RedirectToAction("Index", "RestaurantAdmin");
+                }
+                else if (user.Type == UserType.AppAdmin)
+                {
+                    return RedirectToAction("Index", "AppAdmin");
+                }
+                
+                
             }
 
             ModelState.AddModelError("", "UserName or Password is wrong");
