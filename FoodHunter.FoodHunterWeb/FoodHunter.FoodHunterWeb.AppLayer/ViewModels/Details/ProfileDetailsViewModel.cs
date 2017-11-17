@@ -8,7 +8,7 @@ using FoodHunter.Web.DataLayer;
 
 namespace FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details
 {
-    public class ProfileDetailsViewModel : ProfileBaseViewModel
+    public class RestaurantAdminBaseViewModel : ProfileBaseViewModel
     {
         [EmailAddress]
         public string Email { get; set; }

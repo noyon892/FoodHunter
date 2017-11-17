@@ -1,25 +1,24 @@
-﻿using System;
-using System.Web.Mvc;
-using AutoMapper;
+﻿using AutoMapper;
 using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details;
-using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Edit;
 using FoodHunter.Web.DataLayer;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 
 namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 {
-    public class ProfileController : Controller
+    public class RestaurantAdminController : Controller
     {
         private readonly IUserProfileRepository _repository;
         private UserProfile _profile;
 
 
-        public ProfileController()
+        public RestaurantAdminController()
         {
             _repository = Factory.GetUserProfileRepository();
         }
-
-
-
         // GET: UserProfile
         public ActionResult Index()
         {
@@ -29,20 +28,20 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 
 
                 //Create Map
-                var config = new MapperConfiguration(cfg => cfg.CreateMap<UserProfile, RestaurantAdminBaseViewModel>());
+                var config = new MapperConfiguration(cfg => cfg.CreateMap<UserProfile, RestaurantAdminDetailsViewModel>());
                 var mapper = config.CreateMapper();
-                
-                //Copy values
-                RestaurantAdminBaseViewModel profileDetailsViewModel = mapper.Map<RestaurantAdminBaseViewModel>(_profile);
-                if(_profile != null)
-                    profileDetailsViewModel.Email = Session["Email"].ToString();
 
-                return View(profileDetailsViewModel);  
+                //Copy values
+                RestaurantAdminDetailsViewModel restauantDetailsViewModel = mapper.Map<RestaurantAdminDetailsViewModel>(_profile);
+                if (_profile != null)
+                    restauantDetailsViewModel.Email = Session["Email"].ToString();
+
+                return View(restauantDetailsViewModel);
             }
 
             return RedirectToAction("Index", "Login");
         }
-        
+
 
         [HttpGet]
         public ActionResult Edit()

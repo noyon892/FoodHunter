@@ -47,11 +47,11 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 
 
             //Copy restaurant admin values to restaurantAdminBase
-            config = new MapperConfiguration(cfg => cfg.CreateMap<RestaurantAdmin, RestaurantAdminBaseViewModel>());
+            config = new MapperConfiguration(cfg => cfg.CreateMap<RestaurantAdmin, ViewModels.Base.RestaurantAdminBaseViewModel>());
             mapper = config.CreateMapper();
 
             //Copy values
-            RestaurantAdminBaseViewModel restaurantAdminBase = mapper.Map<RestaurantAdminBaseViewModel>(restaurantAdmin);
+            ViewModels.Base.RestaurantAdminBaseViewModel restaurantAdminBase = mapper.Map<ViewModels.Base.RestaurantAdminBaseViewModel>(restaurantAdmin);
 
             RestaurantDetailsViewModel restaurantDetails = new RestaurantDetailsViewModel
             {
