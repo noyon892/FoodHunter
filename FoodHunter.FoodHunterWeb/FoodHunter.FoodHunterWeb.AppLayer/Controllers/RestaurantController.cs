@@ -79,7 +79,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
             Restaurant restaurantToUpdate = mapper.Map<Restaurant>(input);
             _restaurantContext.Update(restaurantToUpdate);
 
-            return RedirectToAction("restaurantDetails");
+            return RedirectToAction("Index");
         }
 
         [HttpGet]

@@ -36,7 +36,7 @@ namespace FoodHunter.Web.AppLayer.Controllers
                 //copy value
                 User user = mapper.Map<User>(registrationViewModel);
                 user.RegisteredOn = DateTime.Now;
-                user.CurrentUserStatus = UserStatus.Active;
+                user.CurrentStatus = Status.Active;
                 _repository.Insert(user);
 
                 return RedirectToAction("Index", "Login");

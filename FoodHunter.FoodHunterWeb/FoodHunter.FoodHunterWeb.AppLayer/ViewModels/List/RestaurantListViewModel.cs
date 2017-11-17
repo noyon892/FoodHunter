@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using FoodHunter.Web.DataLayer;
 
 namespace FoodHunter.FoodHunterWeb.AppLayer.ViewModels.List
 {
@@ -9,6 +10,6 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.ViewModels.List
     {
         public string RestaurantName { get; set; }
         public int RestaurantId { get; set; }
-        
+        public Status Status { get; set; }
     }
 }

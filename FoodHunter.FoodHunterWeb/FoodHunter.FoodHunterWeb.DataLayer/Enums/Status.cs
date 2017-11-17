@@ -1,6 +1,6 @@
 ﻿namespace FoodHunter.Web.DataLayer
 {
-    public enum UserStatus
+    public enum Status
     {
         Active,
         Blocked
