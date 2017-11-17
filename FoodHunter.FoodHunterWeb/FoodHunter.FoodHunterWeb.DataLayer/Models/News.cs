@@ -17,5 +17,6 @@ namespace FoodHunter.Web.DataLayer
         public int UserId { get; set; }
         [ForeignKey("UserId")]
         public RestaurantAdmin RestaurantAdmin { get; set; }
+        public Status CurrentStatus { get; set; }
     }
 }

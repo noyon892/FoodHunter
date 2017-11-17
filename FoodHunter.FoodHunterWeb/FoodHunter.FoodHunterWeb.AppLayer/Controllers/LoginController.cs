@@ -10,7 +10,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly IUserReposiroty _reposiroty;
+        private readonly IUserRepository _reposiroty;
 
         public LoginController()
         {

@@ -177,6 +177,10 @@
     <Content Include="Views\Restaurant\Create.cshtml" />
     <Content Include="Views\Restaurant\Edit.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\AppAdmin\UserList.cshtml" />
+    <Content Include="Views\AppAdmin\Index.cshtml" />
+    <Content Include="Views\AppAdmin\RestaurantList.cshtml" />
+    <Content Include="Views\AppAdmin\ApprovalList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -187,7 +191,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="ViewModels\Delete\" />
-    <Folder Include="Views\AppAdmin\" />
     <Folder Include="Views\Resturent\" />
   </ItemGroup>
   <ItemGroup>

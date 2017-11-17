@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FoodHunter.Web.DataLayer
 {
-    class UserRepository : IUserReposiroty
+    class UserRepository : IUserRepository
     {
         private readonly DataContext _context;
 

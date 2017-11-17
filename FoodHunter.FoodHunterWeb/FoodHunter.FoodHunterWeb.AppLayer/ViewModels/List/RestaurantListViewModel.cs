@@ -10,6 +10,6 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.ViewModels.List
     {
         public string RestaurantName { get; set; }
         public int RestaurantId { get; set; }
-        public Status Status { get; set; }
+        public Status CurrentStatus { get; set; }
     }
 }
