@@ -9,13 +9,13 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 {
     public class ProfileController : Controller
     {
-        private readonly IUserProfileRepository _repository;
-        private UserProfile _profile;
+        private readonly IFoodieRepository _repository;
+        private Foodie _profile;
 
 
         public ProfileController()
         {
-            _repository = Factory.GetUserProfileRepository();
+            _repository = Factory.GetFoodieRepository();
         }
 
 
@@ -29,15 +29,18 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 
 
                 //Create Map
-                var config = new MapperConfiguration(cfg => cfg.CreateMap<UserProfile, RestaurantAdminBaseViewModel>());
+                var config = new MapperConfiguration(cfg => cfg.CreateMap<Foodie, ProfileDetailsViewModel>());
                 var mapper = config.CreateMapper();
                 
                 //Copy values
-                RestaurantAdminBaseViewModel profileDetailsViewModel = mapper.Map<RestaurantAdminBaseViewModel>(_profile);
-                if(_profile != null)
-                    profileDetailsViewModel.Email = Session["Email"].ToString();
+                ProfileDetailsViewModel profileDetails = mapper.Map<ProfileDetailsViewModel>(_profile);
+                if (_profile != null)
+                {
+                    profileDetails.Email = Session["Email"].ToString();
+                    profileDetails.CheckIns = _profile.CheckIns;
+                }
 
-                return View(profileDetailsViewModel);  
+                return View(profileDetails);  
             }
 
             return RedirectToAction("Index", "Login");
@@ -51,7 +54,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
             {
                 _profile = _repository.Get(Convert.ToInt32(Session["UserId"]));
 
-                var config = new MapperConfiguration(cfg => cfg.CreateMap<UserProfile, ProfileEditViewModel>());
+                var config = new MapperConfiguration(cfg => cfg.CreateMap<Foodie, ProfileEditViewModel>());
                 var mapper = config.CreateMapper();
                 //Copy values
 
@@ -70,11 +73,11 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
             {
                 _profile = _repository.Get(Convert.ToInt32(Session["UserId"]));
 
-                var config = new MapperConfiguration(cfg => cfg.CreateMap<ProfileEditViewModel, UserProfile>());
+                var config = new MapperConfiguration(cfg => cfg.CreateMap<ProfileEditViewModel, Foodie>());
                 var mapper = config.CreateMapper();
                 //Copy values
 
-                UserProfile userProfile = mapper.Map<UserProfile>(input);
+                Foodie userProfile = mapper.Map<Foodie>(input);
                 userProfile.UserId = Convert.ToInt32(Session["UserId"]);
 
                 try

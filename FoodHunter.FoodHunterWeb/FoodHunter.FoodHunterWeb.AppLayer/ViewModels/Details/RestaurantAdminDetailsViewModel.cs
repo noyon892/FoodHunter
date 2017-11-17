@@ -7,9 +7,9 @@ using System.Web;
 
 namespace FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details
 {
-    public class RestaurantAdminDetailsViewModel : RestaurantAdminBaseViewModel
+    public class RestaurantAdminDetailsViewModel : ProfileDetailsViewModel
     {
         public List<Restaurant> Restaurants { get; set; }
-        
+
     }
 }

@@ -12,7 +12,8 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Base
         public string LastName { get; set; }
         [RegularExpression("^([+]?88)?01[15-9]d{8}$", ErrorMessage = "Number format is not valid")]
         public string PhoneNo { get; set; }
-        public string Email { get; set; }
+        public string ProfilePicture { get; set; }
+        public string Address { get; set; }
 
     }
 }

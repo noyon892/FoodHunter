@@ -11,6 +11,6 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details
     public class RestaurantDetailsViewModel
     {
         public RestaurantBaseViewModel RestaurantBase { get; set; }
-        public RestaurantAdminBaseViewModel RestaurantAdminBase { get; set; }
+        public ProfileDetailsViewModel ProfileDetails { get; set; }
     }
 }

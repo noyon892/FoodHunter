@@ -15,14 +15,14 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
     public class RestaurantController : Controller
     {
         private readonly IRestaurantRepository _restaurantContext;
-        private readonly IUserProfileRepository _userContext;
+        private readonly IFoodieRepository _foodieContext;
         private readonly IFoodRepository _foodRepository;
         private readonly IReviewRepository _reviewRepository;
 
         public RestaurantController()
         {
             _restaurantContext = Factory.GetRestaurantRepository();
-            _userContext = Factory.GetUserProfileRepository();
+            _foodieContext = Factory.GetFoodieRepository();
             _foodRepository = Factory.GetFoodRepository();
             _reviewRepository = Factory.GetReviewRepository();
         }
@@ -35,7 +35,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
             Restaurant restaurant = _restaurantContext.Get(id);
             restaurant.FoodMenu = (List<Food>)_foodRepository.GetAll().Where(f => f.RestaurantId == restaurant.ResturantId);
             restaurant.Reviews = (List<Review>)_reviewRepository.GetAll().Where(r => r.RestaurantId == restaurant.ResturantId);
-            UserProfile restaurantAdmin = _userContext.Get(restaurant.ResturantId);
+            UserProfile restaurantAdmin = _foodieContext.Get(restaurant.ResturantId);
 
             #region Setting Values to View Model
             //Copy restaurant values to restaurantbase
@@ -95,9 +95,10 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
             var mapper = config.CreateMapper();
 
             Restaurant restaurant = mapper.Map<Restaurant>(restaurantCreate);
+            restaurant.UserId = Convert.ToInt32(Session["UserId"]);
             _restaurantContext.Insert(restaurant);
 
-            return View();
+            return RedirectToAction("Index");
            
         }
     }

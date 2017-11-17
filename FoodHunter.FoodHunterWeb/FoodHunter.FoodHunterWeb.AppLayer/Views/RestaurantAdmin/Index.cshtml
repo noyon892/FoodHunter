@@ -59,21 +59,30 @@
             @Html.DisplayFor(model => model.Email)
         </dd>
         
-        @foreach (var item in Model.Restaurants)
+        @if (Model != null)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RestaurantName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CurrentStatus)
-                </td>
-            </tr>
+            if (Model.Restaurants != null)
+            {
+                foreach (var item in Model.Restaurants)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RestaurantName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CurrentStatus)
+                        </td>
+                    </tr>
+                }
+            }
         }
-
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<h2>Restaurants</h2>
+<hr />
+@Html.ActionLink("Add Restaurant", "Create", "Restaurant")

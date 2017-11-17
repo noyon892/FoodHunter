@@ -7,18 +7,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FoodHunter.FoodHunterWeb.DataLayer;
 
 namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 {
     public class RestaurantAdminController : Controller
     {
-        private readonly IUserProfileRepository _repository;
-        private UserProfile _profile;
+        private readonly IRestaurantAdminRepository _repository;
+        private IRestaurantRepository _restaurantRepository;
+        private RestaurantAdmin _profile;
 
 
         public RestaurantAdminController()
         {
-            _repository = Factory.GetUserProfileRepository();
+            _repository = Factory.GetRestaurantAdminRepository();
+            _restaurantRepository = Factory.GetRestaurantRepository();
         }
         // GET: UserProfile
         public ActionResult Index()
@@ -29,15 +32,17 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 
 
                 //Create Map
-                var config = new MapperConfiguration(cfg => cfg.CreateMap<UserProfile, RestaurantAdminDetailsViewModel>());
+                var config = new MapperConfiguration(cfg => cfg.CreateMap<RestaurantAdmin, RestaurantAdminDetailsViewModel>());
                 var mapper = config.CreateMapper();
 
                 //Copy values
-                RestaurantAdminDetailsViewModel restauantDetailsViewModel = mapper.Map<RestaurantAdminDetailsViewModel>(_profile);
+                RestaurantAdminDetailsViewModel restaurantAdminDetails = mapper.Map<RestaurantAdminDetailsViewModel>(_profile);
                 if (_profile != null)
-                    restauantDetailsViewModel.Email = Session["Email"].ToString();
+                    restaurantAdminDetails.Email = Session["Email"].ToString();
+                
+                //restauantDetailsViewModel.Restaurants = (List<Restaurant>)_restaurantRepository.GetAll().Where(u => u.UserId == Convert.ToInt32(Session["UserId"]));
 
-                return View(restauantDetailsViewModel);
+                return View(restaurantAdminDetails);
             }
 
             return RedirectToAction("Index", "Login");
@@ -51,7 +56,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
             {
                 _profile = _repository.Get(Convert.ToInt32(Session["UserId"]));
 
-                var config = new MapperConfiguration(cfg => cfg.CreateMap<UserProfile, RestaurantAdminEditViewModel>());
+                var config = new MapperConfiguration(cfg => cfg.CreateMap<RestaurantAdmin, RestaurantAdminEditViewModel>());
                 var mapper = config.CreateMapper();
                 //Copy values
 
@@ -70,11 +75,11 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
             {
                 _profile = _repository.Get(Convert.ToInt32(Session["UserId"]));
 
-                var config = new MapperConfiguration(cfg => cfg.CreateMap<RestaurantAdminEditViewModel, UserProfile>());
+                var config = new MapperConfiguration(cfg => cfg.CreateMap<RestaurantAdminEditViewModel, RestaurantAdmin>());
                 var mapper = config.CreateMapper();
                 //Copy values
 
-                UserProfile userProfile = mapper.Map<UserProfile>(input);
+                RestaurantAdmin userProfile = mapper.Map<RestaurantAdmin>(input);
                 userProfile.UserId = Convert.ToInt32(Session["UserId"]);
 
                 try
@@ -89,7 +94,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
                     Console.WriteLine(e);
                 }
 
-                return RedirectToAction("Index", "Profile");
+                return RedirectToAction("Index");
             }
 
             return RedirectToAction("Index", "Login");
