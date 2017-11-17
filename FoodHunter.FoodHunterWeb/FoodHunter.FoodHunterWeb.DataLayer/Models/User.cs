@@ -17,7 +17,7 @@ namespace FoodHunter.Web.DataLayer
         public string UserName { get; set; }
         [EmailAddress]
         public string Email { get; set; }
-        [MinLength(6)]
+        [MinLength(6)]  
         public string Password { get; set; }
         [Column(TypeName = "datetime2")]
         public DateTime RegisteredOn { get; set; }

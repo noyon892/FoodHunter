@@ -51,8 +51,6 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
         [HttpPost]
         public ActionResult Update(FoodUpdateViewModel input)
         {
-            
-
             var config = new MapperConfiguration(cfg => cfg.CreateMap<FoodUpdateViewModel, Food>());
             var mapper = config.CreateMapper();
             //Copy values

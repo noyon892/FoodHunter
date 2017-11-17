@@ -7,6 +7,8 @@ using AutoMapper;
 using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Base;
 using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details;
 using FoodHunter.Web.DataLayer;
+using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Create;
+using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Edit;
 
 namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 {
@@ -65,6 +67,38 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
         public ActionResult Edit()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Edit(RestaurantEditViewModel input)
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<RestaurantEditViewModel, Restaurant>());
+            var mapper = config.CreateMapper();
+            //Copy values
+
+            Restaurant restaurantToUpdate = mapper.Map<Restaurant>(input);
+            _restaurantContext.Update(restaurantToUpdate);
+
+            return RedirectToAction("restaurantDetails");
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(RestaurantCreateViewModel restaurantCreate)
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<RestaurantCreateViewModel, Restaurant>());
+            var mapper = config.CreateMapper();
+
+            Restaurant restaurant = mapper.Map<Restaurant>(restaurantCreate);
+            _restaurantContext.Insert(restaurant);
+
+            return View();
+           
         }
     }
 }

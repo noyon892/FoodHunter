@@ -8,7 +8,6 @@ namespace FoodHunter.Web.DataLayer
         internal UserProfile()
         {
         }
-
         [Key]
         public int UserId { get; set; }
         [ForeignKey("UserId")]

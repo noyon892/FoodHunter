@@ -65,6 +65,22 @@
             </dd>
     
         </dl>
+        @foreach (var item in Model.CheckIns)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckInTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Restaurant)
+            </td>  
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
