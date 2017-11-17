@@ -144,6 +144,7 @@
     <Compile Include="ViewModels\Create\FoodCreateViewModel.cs" />
     <Compile Include="ViewModels\Create\NewsCreateViewModel.cs" />
     <Compile Include="ViewModels\Create\RestaurantCreateViewModel.cs" />
+    <Compile Include="ViewModels\Create\ReviewCreateViewModel.cs" />
     <Compile Include="ViewModels\Details\FoodDetailsViewModel.cs" />
     <Compile Include="ViewModels\Details\ProfileDetailsViewModel.cs" />
     <Compile Include="ViewModels\Details\RestaurantAdminDetailsViewModel.cs" />

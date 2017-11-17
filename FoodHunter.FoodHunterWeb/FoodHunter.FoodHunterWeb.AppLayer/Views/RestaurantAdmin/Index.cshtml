@@ -58,6 +58,18 @@
         <dd>
             @Html.DisplayFor(model => model.Email)
         </dd>
+        
+        @foreach (var item in Model.Restaurants)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RestaurantName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CurrentStatus)
+                </td>
+            </tr>
+        }
 
     </dl>
 </div>
