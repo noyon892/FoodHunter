@@ -1,17 +1,32 @@
-.sidebar
-{
-	border-right:1px solid black;
-	border-bottom: 0px;
+.sidebar {
+    border-right: 1px solid black;
+    border-bottom: 0px;
 }
-.bg-lightgray
-{
-    background-color:LightGray;
+
+.bg-lightgray {
+    background-color: LightGray;
 }
+
 a.navbar-brand.mynavbar-brand {
     font-size: 30px;
     font-family: cursive;
     color: linen;
 }
+
 li.access a {
     display: inline-block;
+}
+
+.linktab p {
+    font-size: 17px;
+}
+
+.linktab a {
+    font-size: 28px;
+}
+
+.linktab {
+    width: 50%;
+    /* height: 80px; */
+    background-color: #d9d9d9;
 }
