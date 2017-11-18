@@ -58,24 +58,6 @@
         <dd>
             @Html.DisplayFor(model => model.Email)
         </dd>
-        
-        @if (Model != null)
-        {
-            if (Model.Restaurants != null)
-            {
-                foreach (var item in Model.Restaurants)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RestaurantName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CurrentStatus)
-                        </td>
-                    </tr>
-                }
-            }
-        }
     </dl>
 </div>
 <p>
@@ -85,4 +67,34 @@
 
 <h2>Restaurants</h2>
 <hr />
+    
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Restaurants[0].RestaurantName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Restaurants[0].CurrentStatus)
+        </th>
+    </tr>
+    @if (Model != null)
+    {
+        if (Model.Restaurants != null)
+        {
+            foreach (var item in Model.Restaurants)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(""+item.RestaurantName+"", "Index", "Restaurant", new { id=item.ResturantId }, null)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CurrentStatus)
+                    </td>
+                </tr>
+                <br />
+            }
+        }
+    }
+</table>
+
 @Html.ActionLink("Add Restaurant", "Create", "Restaurant")

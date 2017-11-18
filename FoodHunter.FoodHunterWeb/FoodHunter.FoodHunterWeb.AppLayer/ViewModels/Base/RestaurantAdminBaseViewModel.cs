@@ -14,6 +14,8 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Base
         public string PhoneNo { get; set; }
         public string ProfilePicture { get; set; }
         public string Address { get; set; }
+        [EmailAddress]
+        public string Email { get; set; }
 
     }
 }

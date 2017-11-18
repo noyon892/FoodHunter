@@ -197,7 +197,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="ViewModels\Delete\" />
-    <Folder Include="Views\Resturent\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FoodHunter.FoodHunterWeb.DataLayer\FoodHunter.Web.DataLayer.csproj">

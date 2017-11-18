@@ -22,9 +22,9 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
         }
 
         // GET: Food
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            return RedirectToAction("Details");
+            return RedirectToAction("Details",id);
         }
 
         [HttpGet]
@@ -42,7 +42,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 
             Food food = mapper.Map<Food>(foodCreate);
             _repository.Insert(food);
-            return View();
+            return RedirectToAction("Index","Restaurant",1);
         }
 
         [HttpGet]

@@ -18,8 +18,5 @@ namespace FoodHunter.Web.DataLayer
         public int DiscoutPercentage { get; set; }      //If any offer is ruuning for discount
         public string Description { get; set; }
         public List<Review> Reviews { get; set; }       //Food review by users
-        public int RestaurantId { get; set; }
-        [ForeignKey("RestaurantId")]
-        public Restaurant Restaurant { get; set; }      //Restaurant that hosts the food
     }
 }

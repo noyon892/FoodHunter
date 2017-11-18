@@ -42,14 +42,9 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.ProfileDetails.FirstName + " " +model.ProfileDetails.LastName)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.ProfileDetails.Email)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.ProfileDetails.Email)
+                @Html.DisplayFor(model => model.ProfileDetails.FirstName)
+                @(" ")
+                @Html.DisplayFor(model => model.ProfileDetails.LastName)
             </dd>
             <dt>
                 @Html.DisplayNameFor(model => model.ProfileDetails.PhoneNo)
@@ -60,21 +55,38 @@
             </dd>
         </dl>
         
-        <table class="table">
-            @foreach (var item in Model.RestaurantBase.FoodMenu)
-            {
-                <tr>
-                    <td>@item.FoodPicture</td>
-                    <td>@item.FoodName</td>
-                    <td>@item.FoodPrice</td>
-                </tr>
-            }
-            
-        </table>
+        
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
         @Html.ActionLink("Back to List", "Index")
     </p>
+    
+    <h2>Food Menu</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RestaurantBase.FoodMenu[0].FoodPicture)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RestaurantBase.FoodMenu[0].FoodName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RestaurantBase.FoodMenu[0].FoodPrice)
+        </th>
+    </tr>
+
+    @foreach (var item in Model.RestaurantBase.FoodMenu)
+    {
+        <tr>
+            <td>@item.FoodPicture</td>
+            <td>@Html.ActionLink("" + item.FoodName + "", "Details", "Food", new { id = item.FoodId }, null)</td>
+            <td>@item.FoodPrice</td>
+        </tr>
+    }
+
+</table>
+    
+@Html.ActionLink("Add Food", "Create", "Food")
 </body>
 </html>
