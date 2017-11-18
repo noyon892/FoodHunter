@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using FoodHunter.Web.DataLayer;
 
-namespace FoodHunter.FoodHunterWeb.DataLayer
+namespace FoodHunter.Web.DataLayer
 {
     public interface IRestaurantAdminRepository
     {
