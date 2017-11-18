@@ -37,22 +37,10 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active">@Html.ActionLink("Home", "Index", "Home") <span class="sr-only">(current)</span></li>
-                    <li>@Html.ActionLink("Top Restaurant", "TopRestaurantList", "Home")</li>
-                    <li>@Html.ActionLink("Top Foods", "FoodList", "Home")</li>
+                    <li>@Html.ActionLink("Top Resturent", "Index", "Restaurant")</li>
+                    <li>@Html.ActionLink("Top Foods", "Details", "Food")</li>
                     <li>@Html.ActionLink("Tranding", "Details", "Food")</li>
                     <li>@Html.ActionLink("New Arrival", "Details", "Food")</li>
-                    @*<li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">One more separated link</a></li>
-                            </ul>
-                        </li>*@
                 </ul>
                 <form class="navbar-form navbar-left">
                     <div class="form-group">
@@ -61,41 +49,30 @@
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="access">
-                        @if (Session["UserId"] == null)
-                        {
-                            @Html.ActionLink("Login", "Index", "Login")  @Html.ActionLink("SignUp", "Index", "Registration")
-                        }
-                        else
-                        {
-                            @Html.ActionLink(""+ Session["UserName"] +"", "Index", "Profile")  @Html.ActionLink("SignOut", "Logout", "Login")
-                        }
-                    </li>
+                    <li class="access">@Html.ActionLink("Login", "Index", "Login")/@Html.ActionLink("SignUp", "Index", "Registration")</li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
 
     <!-- Body start -->
-    <div class="container-fluid">
-        @*<div class="row">
-                <div class="col-xs-3 sidebar">
-                    <h3>Sidebar</h3>
-                    <ul class="nav nav-tabs nav-stacked">
-                        <li><a href='#'>Another Link 1</a></li>
-                        <li><a href='#'>Another Link 2</a></li>
-                        <li><a href='#'>Another Link 3</a></li>
-                    </ul>
-                </div>
-                <div class="col-xs-9">
-                    <h2>Main Content Section</h2>
-                    @RenderBody()
-                </div>
-            </div>*@
-        <div class="container">
-            @RenderBody()
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-3 sidebar">
+                <h3>Sidebar</h3>
+                <ul class="nav nav-tabs nav-stacked">
+                    <a href='#'><button class="btn btn-info btn-lg btn-group-justified my-btn"><li>Profile</li></button></a>
+                    <a href='#'><button class="btn btn-info btn-lg btn-group-justified my-btn"><li>Edit Profile</li></button></a>
+                    <a href='#'><button class="btn btn-info btn-lg btn-group-justified my-btn"><li>Resturent List</li></button></a>
+                    <a href='#'><button class="btn btn-info btn-lg btn-group-justified my-btn"><li>Food List</li></button></a>
+                </ul>
+            </div>
+            <div class="col-xs-9">
+                @RenderBody()
+            </div>
         </div>
     </div>
+
 
     <footer class="container-fluid text-center bg-lightgray">
 
