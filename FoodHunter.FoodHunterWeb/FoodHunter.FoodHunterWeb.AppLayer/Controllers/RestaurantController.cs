@@ -36,8 +36,10 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
         public ActionResult Index(int id)
         {
             Restaurant restaurant = _restaurantContext.Get(id);
-            restaurant.Reviews = (List<Review>)_reviewRepository.GetAll().Where(r => r.RestaurantId == restaurant.ResturantId).ToList();
-            RestaurantAdmin restaurantAdmin = _restaurantAdminContext.Get(restaurant.ResturantId);
+            restaurant.FoodMenu =
+                _foodRepository.GetAll().Where(f => f.RestaurantId == restaurant.RestaurantId).ToList();
+            restaurant.Reviews = _reviewRepository.GetAll().Where(r => r.RestaurantId == restaurant.RestaurantId).ToList();
+            RestaurantAdmin restaurantAdmin = _restaurantAdminContext.Get(restaurant.UserId);
 
             #region Setting Values to View Model
             //Copy restaurant values to restaurantbase
@@ -46,8 +48,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 
             //Copy values
             RestaurantBaseViewModel restaurantBase = mapper.Map<RestaurantBaseViewModel>(restaurant);
-
-
+            
             //Copy restaurant admin values to restaurantAdminBase
             config = new MapperConfiguration(cfg => cfg.CreateMap<RestaurantAdmin, RestaurantAdminBaseViewModel>());
             mapper = config.CreateMapper();
@@ -61,7 +62,6 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
                 ProfileDetails = restaurantAdminBase
             };
             #endregion
-
 
             return View(restaurantDetails);
         }

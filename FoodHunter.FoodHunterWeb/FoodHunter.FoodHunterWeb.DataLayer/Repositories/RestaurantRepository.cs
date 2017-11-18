@@ -20,7 +20,7 @@ namespace FoodHunter.Web.DataLayer
 
         public Restaurant Get(int id)
         {
-            return _context.Restaurants.SingleOrDefault(e => e.ResturantId == id);
+            return _context.Restaurants.SingleOrDefault(e => e.RestaurantId == id);
         }
 
         public int Insert(Restaurant restaurant)
@@ -32,7 +32,7 @@ namespace FoodHunter.Web.DataLayer
 
         public int Update(Restaurant restaurant)
         {
-            Restaurant userToUpdate = _context.Restaurants.SingleOrDefault(e => e.ResturantId == restaurant.ResturantId);
+            Restaurant userToUpdate = _context.Restaurants.SingleOrDefault(e => e.RestaurantId == restaurant.RestaurantId);
             foreach (PropertyInfo property in typeof(Restaurant).GetProperties())
             {
                 property.SetValue(userToUpdate, property.GetValue(restaurant, null), null);
@@ -43,7 +43,7 @@ namespace FoodHunter.Web.DataLayer
 
         public int Delete(int id)
         {
-            Restaurant restaurantToDelete = _context.Restaurants.SingleOrDefault(e => e.ResturantId == id);
+            Restaurant restaurantToDelete = _context.Restaurants.SingleOrDefault(e => e.RestaurantId == id);
             if (restaurantToDelete != null) _context.Restaurants.Remove(restaurantToDelete);
 
             return _context.SaveChanges();

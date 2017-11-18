@@ -28,21 +28,23 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
         }
 
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
-
+            TempData["RestaurantId"] = id;
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(FoodCreateViewModel foodCreate)
+        public ActionResult Create(FoodCreateViewModel input)
         {
             var config = new MapperConfiguration(cfg => cfg.CreateMap<FoodCreateViewModel, Food>());
             var mapper = config.CreateMapper();
 
-            Food food = mapper.Map<Food>(foodCreate);
-            _repository.Insert(food);
-            return RedirectToAction("Index","Restaurant",1);
+            Food foodToInsert = mapper.Map<Food>(input);
+            foodToInsert.RestaurantId = Convert.ToInt32(TempData["RestaurantId"]);
+            _repository.Insert(foodToInsert);
+
+            return RedirectToAction("Index","Restaurant", new { @id = foodToInsert.RestaurantId });
         }
 
         [HttpGet]
@@ -68,7 +70,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
         public ActionResult Details(int id)
         {
             Food food = _repository.Get(id);
-            food.Reviews = (List<Review>)_reviewRepository.GetAll().Where(r => r.FoodId == id);
+            food.Reviews = _reviewRepository.GetAll().Where(r => r.FoodId == id).ToList();
 
             var config = new MapperConfiguration(cfg => cfg.CreateMap<Food, FoodDetailsViewModel>());
             var mapper = config.CreateMapper();
@@ -87,8 +89,6 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 
             //Copy values
             Review reviewToCreate = mapper.Map<Review>(input);
-            reviewToCreate.UserId = Convert.ToInt32(Session["UserId"]);
-            reviewToCreate.FoodId = id;
 
             _reviewRepository.Insert(reviewToCreate);
 

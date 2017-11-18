@@ -25,7 +25,7 @@ namespace FoodHunter.Web.AppLayer.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(RegistrationViewModel registrationViewModel)
+        public ActionResult Index(RegistrationViewModel input)
         {
             //create mapper
             var config = new MapperConfiguration(cfg => cfg.CreateMap<RegistrationViewModel, User>());
@@ -33,16 +33,26 @@ namespace FoodHunter.Web.AppLayer.Controllers
 
             if (ModelState.IsValid)
             {
-                //copy value
-                User user = mapper.Map<User>(registrationViewModel);
-                user.RegisteredOn = DateTime.Now;
-                user.CurrentStatus = Status.Active;
-                _repository.Insert(user);
+                if (!_repository.GetAll().Exists(u => u.UserName == input.UserName))
+                {
+                    //copy value
+                    User user = mapper.Map<User>(input);
+                    user.RegisteredOn = DateTime.Now;
+                    user.CurrentStatus = Status.Active;
+                    _repository.Insert(user);
 
-                return RedirectToAction("Index", "Login");
+                    return RedirectToAction("Index", "Login");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "User already exist with this userName");
+                }
             }
-
-            ModelState.AddModelError("", "Fill all the fields carefully");
+            else
+            {
+                ModelState.AddModelError("", "Fill all the fields carefully");
+            }
+            
             return View();
         }
     }

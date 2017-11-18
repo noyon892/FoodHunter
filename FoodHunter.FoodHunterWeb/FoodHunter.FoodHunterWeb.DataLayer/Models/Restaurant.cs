@@ -12,7 +12,7 @@ namespace FoodHunter.Web.DataLayer
         }
 
         [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ResturantId { get; set; }
+        public int RestaurantId { get; set; }
         public string RestaurantName { get; set; }
         public string CoverPicture { get; set; }
         public string Location { get; set; }

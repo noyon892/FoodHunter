@@ -8,6 +8,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Base
 {
     public class RestaurantBaseViewModel
     {
+        public int RestaurantId { get; set; }
         public string RestaurantName { get; set; }
         public string CoverPicture { get; set; }
         public string Location { get; set; }
