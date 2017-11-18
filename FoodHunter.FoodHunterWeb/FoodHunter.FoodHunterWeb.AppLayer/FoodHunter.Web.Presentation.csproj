@@ -191,6 +191,7 @@
     <Content Include="Views\RestaurantAdmin\Edit.cshtml" />
     <Content Include="Views\Home\FoodList.cshtml" />
     <Content Include="Views\Home\TopRestaurantList.cshtml" />
+    <Content Include="Views\Shared\_Layout_Restaurant_Admin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
