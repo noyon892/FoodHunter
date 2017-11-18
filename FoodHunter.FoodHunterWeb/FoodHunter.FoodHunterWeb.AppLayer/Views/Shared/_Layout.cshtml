@@ -37,8 +37,8 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active">@Html.ActionLink("Home", "Index", "Home") <span class="sr-only">(current)</span></li>
-                    <li>@Html.ActionLink("Top Resturent", "Index", "Restaurant")</li>
-                    <li>@Html.ActionLink("Top Foods", "Details", "Food")</li>
+                    <li>@Html.ActionLink("Top Restaurant", "TopRestaurantList", "Home")</li>
+                    <li>@Html.ActionLink("Top Foods", "FoodList", "Home")</li>
                     <li>@Html.ActionLink("Tranding", "Details", "Food")</li>
                     <li>@Html.ActionLink("New Arrival", "Details", "Food")</li>
                     @*<li class="dropdown">
@@ -61,7 +61,16 @@
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="access">@Html.ActionLink("Login", "Index", "Login")/@Html.ActionLink("SignUp", "Index", "Registration")</li>
+                    <li class="access">
+                        @if (Session["UserId"] == null)
+                        {
+                            @Html.ActionLink("Login", "Index", "Login")  @Html.ActionLink("SignUp", "Index", "Registration")
+                        }
+                        else
+                        {
+                            @Html.ActionLink(""+ Session["UserName"] +"", "Index", "Profile")  @Html.ActionLink("SignOut", "Logout", "Login")
+                        }
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
