@@ -5,7 +5,9 @@
 }
 
 <h2>Index</h2>
-<a href="@Url.Action("UserList", "AppAdminController")">User List<span>All the Users are here</span></a>
-<a href="@Url.Action("RestaurantList", "AppAdminController")">Restaurent List <span>All the Restaurant are here</span></a>
-<a href="@Url.Action("ApprovalList", "AppAdminController")">Approval List <span>Controll the Approvals</span></a>
-
+@Html.ActionLink("Users List","UserList","AppAdmin")<br/>
+<p>See the List Of Users</p>
+@Html.ActionLink("Restaurants List", "RestaurantList", "AppAdmin")<br/>
+<p>See the List Of Restaurants</p>
+@Html.ActionLink("Approval List", "ApprovalList", "AppAdmin")
+<p>Pending Approval Lists</p>
