@@ -1,5 +1,4 @@
-﻿using FoodHunter.FoodHunterWeb.DataLayer;
-
+﻿
 namespace FoodHunter.Web.DataLayer
 {
     public class Factory

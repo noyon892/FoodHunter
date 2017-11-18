@@ -9,8 +9,6 @@ using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details;
 using FoodHunter.Web.DataLayer;
 using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Create;
 using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Edit;
-using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Update;
-using FoodHunter.FoodHunterWeb.DataLayer;
 
 namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 {

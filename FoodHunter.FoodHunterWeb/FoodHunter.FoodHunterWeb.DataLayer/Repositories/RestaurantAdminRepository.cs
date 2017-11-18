@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using FoodHunter.Web.DataLayer;
 
-namespace FoodHunter.FoodHunterWeb.DataLayer
+namespace FoodHunter.Web.DataLayer
 {
     class RestaurantAdminRepository : IRestaurantAdminRepository
     {
