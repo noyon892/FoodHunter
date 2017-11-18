@@ -6,8 +6,7 @@ using System.Web;
 
 namespace FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Update
 {
-    public class FoodUpdateViewModel : FoodBaseViewModel
+    public class FoodEditViewModel : FoodBaseViewModel
     {
-        public int FoodId { get; set; }
     }
 }

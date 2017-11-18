@@ -48,20 +48,31 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
         }
 
         [HttpGet]
-        public ActionResult Update()
+        public ActionResult Edit(int id)
         {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Update(FoodUpdateViewModel input)
-        {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<FoodUpdateViewModel, Food>());
+            Food foodToUpdate = _repository.Get(id);
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Food, FoodEditViewModel>());
             var mapper = config.CreateMapper();
             //Copy values
 
-            Food foodToUpdate = mapper.Map<Food>(input);
-            _repository.Update(foodToUpdate);
+            FoodEditViewModel foodEdit = mapper.Map<FoodEditViewModel>(foodToUpdate);
+            TempData["FoodId"] = id;
+            TempData["RestaurantId"] = foodToUpdate.RestaurantId;
+
+            return View(foodEdit);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(FoodEditViewModel input)
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<FoodEditViewModel, Food>());
+            var mapper = config.CreateMapper();
+            //Copy values
+
+            Food foodToEdit = mapper.Map<Food>(input);
+            foodToEdit.FoodId = Convert.ToInt32(TempData["FoodId"]);
+            foodToEdit.RestaurantId = Convert.ToInt32(TempData["RestaurantId"]);
+            _repository.Update(foodToEdit);
 
             return RedirectToAction("Details");
         }

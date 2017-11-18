@@ -1,4 +1,5 @@
-﻿@model FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details.FoodDetailsViewModel
+﻿@using FoodHunter.Web.DataLayer
+@model FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details.FoodDetailsViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -6,110 +7,116 @@
 
 <h2>Details</h2>
 
-<div>
+
     <h4>FoodDetailsViewModel</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FoodName)
-        </dt>
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.FoodName)
+    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FoodName)
-        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.FoodName)
+    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FoodPrice)
-        </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.FoodPrice)
+    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FoodPrice)
-        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.FoodPrice)
+    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FoodPicture)
-        </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.FoodPicture)
+    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FoodPicture)
-        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.FoodPicture)
+    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DiscoutPercentage)
-        </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.DiscoutPercentage)
+    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DiscoutPercentage)
-        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.DiscoutPercentage)
+    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.Description)
+    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.Description)
+    </dd>
 
-    </dl>
-    @foreach (var item in Model.Reviews)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Reviewer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Comment)
-            </td>  
-        </tr>
-    }
+</dl>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id = Url.RequestContext.RouteData.Values["id"] }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+@foreach (var item in Model.Reviews)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Reviewer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comment)
+        </td>  
+    </tr>
+}
     
-    @using (Html.BeginForm()) 
+
+@if (Session["UserType"].ToString() == UserType.Foodie.ToString())
+{
+    using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-    
+
         <div class="form-horizontal">
             <h4>ReviewCreateView</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <hr/>
+            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
             <div class="form-group">
-                @Html.LabelFor(model => model.ReviewCreate.FoodPicture, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.ReviewCreate.FoodPicture, htmlAttributes: new {@class = "control-label col-md-2"})
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.ReviewCreate.FoodPicture, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ReviewCreate.FoodPicture, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.ReviewCreate.FoodPicture, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.ReviewCreate.FoodPicture, "", new {@class = "text-danger"})
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(model => model.ReviewCreate.FoodPicture, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.ReviewCreate.FoodPicture, htmlAttributes: new {@class = "control-label col-md-2"})
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.ReviewCreate.FoodPicture, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ReviewCreate.FoodPicture, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.ReviewCreate.FoodPicture, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.ReviewCreate.FoodPicture, "", new {@class = "text-danger"})
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(model => model.ReviewCreate.Rating, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.ReviewCreate.Rating, htmlAttributes: new {@class = "control-label col-md-2"})
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.ReviewCreate.Rating, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ReviewCreate.Rating, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.ReviewCreate.Rating, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.ReviewCreate.Rating, "", new {@class = "text-danger"})
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(model => model.ReviewCreate.Comment, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.ReviewCreate.Comment, htmlAttributes: new {@class = "control-label col-md-2"})
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.ReviewCreate.Comment, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ReviewCreate.Comment, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.ReviewCreate.Comment, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.ReviewCreate.Comment, "", new {@class = "text-danger"})
                 </div>
             </div>
-            
+
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Create" class="btn btn-default"/>
                 </div>
             </div>
         </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    }
+}
