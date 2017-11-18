@@ -1,7 +1,8 @@
 ﻿@model FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details.ProfileDetailsViewModel
 
 @{
-    Layout = null;
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -9,11 +10,9 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
 </head>
 <body>
     <div>
-        <h4>ProfileDetailsViewModel</h4>
         <hr />
         <dl class="dl-horizontal">
             <dt>
@@ -90,7 +89,6 @@
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-        @Html.ActionLink("Back to List", "Index")
     </p>
 </body>
 </html>

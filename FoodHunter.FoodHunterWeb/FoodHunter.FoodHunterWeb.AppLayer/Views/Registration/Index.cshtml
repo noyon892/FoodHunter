@@ -1,15 +1,14 @@
 ﻿@model FoodHunter.Web.AppLayer.RegistrationViewModel
 
 @{
-    Layout = null;
+    ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
 </head>
 <body>
     @using (Html.BeginForm()) 
@@ -17,7 +16,7 @@
         @Html.AntiForgeryToken()
         
         <div class="form-horizontal">
-            <h4>RegistrationViewModel</h4>
+            <h2>Registration</h2>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
@@ -67,9 +66,5 @@
             </div>
         </div>
     }
-    
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
 </body>
 </html>

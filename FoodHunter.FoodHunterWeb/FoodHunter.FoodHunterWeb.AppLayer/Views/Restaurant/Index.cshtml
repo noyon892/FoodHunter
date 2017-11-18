@@ -1,19 +1,18 @@
 ﻿@model FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details.RestaurantDetailsViewModel
 
 @{
-    Layout = null;
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
 </head>
 <body>
     <div>
-        <h4>RestaurantDetailsViewModel</h4>
+        <h4>Welcome Restaurant Admin</h4>
         <hr />
         <dl class="dl-horizontal">
             <dt>
@@ -58,8 +57,7 @@
         
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.RestaurantBase.RestaurantId  }) |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Edit", "Edit", new { id = Model.RestaurantBase.RestaurantId  }) 
     </p>
     
     <h2>Food Menu</h2>
