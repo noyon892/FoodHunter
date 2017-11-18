@@ -74,7 +74,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
             foodToEdit.RestaurantId = Convert.ToInt32(TempData["RestaurantId"]);
             _repository.Update(foodToEdit);
 
-            return RedirectToAction("Details");
+            return RedirectToAction("Details", new {@id = foodToEdit.FoodId});
         }
 
         [HttpGet]

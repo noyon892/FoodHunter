@@ -9,6 +9,7 @@ using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details;
 using FoodHunter.Web.DataLayer;
 using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Create;
 using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Edit;
+using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Update;
 using FoodHunter.FoodHunterWeb.DataLayer;
 
 namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
@@ -17,17 +18,17 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
     {
         private readonly IRestaurantRepository _restaurantContext;
         private readonly IFoodieRepository _foodieContext;
-        private IRestaurantAdminRepository _restaurantAdminContext;
-        private readonly IFoodRepository _foodRepository;
-        private readonly IReviewRepository _reviewRepository;
+        private readonly IRestaurantAdminRepository _restaurantAdminContext;
+        private readonly IFoodRepository _foodContext;
+        private readonly IReviewRepository _reviewContext;
 
         public RestaurantController()
         {
             _restaurantContext = Factory.GetRestaurantRepository();
             _foodieContext = Factory.GetFoodieRepository();
             _restaurantAdminContext = Factory.GetRestaurantAdminRepository();
-            _foodRepository = Factory.GetFoodRepository();
-            _reviewRepository = Factory.GetReviewRepository();
+            _foodContext = Factory.GetFoodRepository();
+            _reviewContext = Factory.GetReviewRepository();
         }
 
 
@@ -37,8 +38,8 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
         {
             Restaurant restaurant = _restaurantContext.Get(id);
             restaurant.FoodMenu =
-                _foodRepository.GetAll().Where(f => f.RestaurantId == restaurant.RestaurantId).ToList();
-            restaurant.Reviews = _reviewRepository.GetAll().Where(r => r.RestaurantId == restaurant.RestaurantId).ToList();
+                _foodContext.GetAll().Where(f => f.RestaurantId == restaurant.RestaurantId).ToList();
+            restaurant.Reviews = _reviewContext.GetAll().Where(r => r.RestaurantId == restaurant.RestaurantId).ToList();
             RestaurantAdmin restaurantAdmin = _restaurantAdminContext.Get(restaurant.UserId);
 
             #region Setting Values to View Model
@@ -67,9 +68,16 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
-            return View();
+            Restaurant restaurantToUpdate = _restaurantContext.Get(id);
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Restaurant, RestaurantEditViewModel>());
+            var mapper = config.CreateMapper();
+            //Copy values
+
+            RestaurantEditViewModel restaurantEdit = mapper.Map<RestaurantEditViewModel>(restaurantToUpdate);
+            TempData["RestaurantId"] = id;
+            return View(restaurantEdit);
         }
 
         [HttpPost]
@@ -80,9 +88,11 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
             //Copy values
 
             Restaurant restaurantToUpdate = mapper.Map<Restaurant>(input);
+            restaurantToUpdate.RestaurantId = Convert.ToInt32(TempData["RestaurantId"]);
+            restaurantToUpdate.UserId = Convert.ToInt32(Session["UserId"]);
             _restaurantContext.Update(restaurantToUpdate);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new {@id = restaurantToUpdate.RestaurantId});
         }
 
         [HttpGet]
