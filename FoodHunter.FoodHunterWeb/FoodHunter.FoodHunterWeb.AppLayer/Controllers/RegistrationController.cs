@@ -53,7 +53,7 @@ namespace FoodHunter.Web.AppLayer.Controllers
                 ModelState.AddModelError("", "Fill all the fields carefully");
             }
             
-            return View();
+            return View(input);
         }
     }
 }

@@ -12,7 +12,10 @@ namespace FoodHunter.Web.AppLayer
     {
         [Required]
         public string UserName { get; set; }
+        [MinLength(6, ErrorMessage = "Password length must be greater than 6 charecter"), DataType(DataType.Password)]
         public string Password { get; set; }
+        [DataType(DataType.Password)]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Password doesn't match")]
         public string ConfirmPassword { get; set; }
         [EmailAddress]
         public string Email { get; set; }
