@@ -1,0 +1,38 @@
+﻿@model IEnumerable<FoodHunter.FoodHunterWeb.AppLayer.ViewModels.List.FoodListViewModel>
+
+@{
+    ViewBag.Title = "FoodList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Food List</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodPicture)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FoodName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FoodPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FoodPicture)
+        </td>
+       
+    </tr>
+}
+
+</table>

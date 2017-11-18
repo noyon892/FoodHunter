@@ -153,8 +153,10 @@
     <Compile Include="ViewModels\Edit\RestaurantAdminEditViewModel.cs" />
     <Compile Include="ViewModels\Edit\RestaurantEditViewModel.cs" />
     <Compile Include="ViewModels\List\ApprovalListViewModel.cs" />
+    <Compile Include="ViewModels\List\FoodListViewModel.cs" />
     <Compile Include="ViewModels\List\NewsListViewModel.cs" />
     <Compile Include="ViewModels\List\RestaurantListViewModel.cs" />
+    <Compile Include="ViewModels\List\TopRestaurantListViewModel.cs" />
     <Compile Include="ViewModels\List\UserListViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
@@ -187,6 +189,8 @@
     <Content Include="Views\AppAdmin\ApprovalList.cshtml" />
     <Content Include="Views\RestaurantAdmin\Index.cshtml" />
     <Content Include="Views\RestaurantAdmin\Edit.cshtml" />
+    <Content Include="Views\Home\FoodList.cshtml" />
+    <Content Include="Views\Home\TopRestaurantList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

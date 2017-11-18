@@ -14,7 +14,7 @@ namespace FoodHunter.Web.DataLayer
         public string Comment { get; set; }
         public string FoodPicture { get; set; }
         [Range(1,10)]
-        public byte Rating { get; set; }
+        public int Rating { get; set; }
         public int UserId { get; set; }
         [ForeignKey("UserId")]
         public Foodie Reviewer { get; set; }

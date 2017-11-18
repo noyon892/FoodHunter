@@ -8,7 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
+namespace FoodHunter.Web.AppLayer.Controllers
 {
     public class RestaurantAdminController : Controller
     {
