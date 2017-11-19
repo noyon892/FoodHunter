@@ -1,4 +1,5 @@
-﻿@model FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details.RestaurantDetailsViewModel
+﻿@using FoodHunter.Web.DataLayer
+@model FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details.RestaurantDetailsViewModel
 
 @{
     ViewBag.Title = "Profile";
@@ -60,31 +61,17 @@
         @Html.ActionLink("Edit", "Edit", new { id = Model.RestaurantBase.RestaurantId  }) 
     </p>
     
-    <h2>Food Menu</h2>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.RestaurantBase.FoodMenu[0].FoodPicture)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RestaurantBase.FoodMenu[0].FoodName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RestaurantBase.FoodMenu[0].FoodPrice)
-        </th>
-    </tr>
+<h2>Food Menu</h2>
+@{
+    Html.RenderAction("List","Review", new {id = Url.RequestContext.RouteData.Values["id"], @controller = Url.RequestContext.RouteData.Values["controller"] });
+}
+;
 
-    @foreach (var item in Model.RestaurantBase.FoodMenu)
-    {
-        <tr>
-            <td>@item.FoodPicture</td>
-            <td>@Html.ActionLink("" + item.FoodName + "", "Details", "Food", new { id = item.FoodId }, null)</td>
-            <td>@item.FoodPrice</td>
-        </tr>
-    }
+@if (Session["UserId"] != null && Session["UserType"].ToString() == UserType.Foodie.ToString())
+{
+    Html.RenderAction("Create", "Review", new {id = Url.RequestContext.RouteData.Values["id"],
+        controller = Url.RequestContext.RouteData.Values["controller"]});
+}
 
-</table>
-    
-@Html.ActionLink("Add Food", "Create", "Food", new{@id = Model.RestaurantBase.RestaurantId}, null)
 </body>
 </html>

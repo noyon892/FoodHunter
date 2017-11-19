@@ -3,35 +3,28 @@ using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details;
 using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Edit;
 using FoodHunter.Web.DataLayer;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace FoodHunter.Web.AppLayer.Controllers
 {
     public class RestaurantAdminController : Controller
     {
-        private IRestaurantAdminRepository _repository;
-        private IRestaurantRepository _restaurantRepository;
+        private readonly IRestaurantAdminRepository _repository;
+        private readonly IRestaurantRepository _restaurantRepository;
         private RestaurantAdmin _profile;
 
 
         public RestaurantAdminController()
         {
-            InitilizeRepository();
-        }
-
-        private void InitilizeRepository()
-        {
             _repository = Factory.GetRestaurantAdminRepository();
             _restaurantRepository = Factory.GetRestaurantRepository();
         }
+        
 
         // GET: UserProfile
         public ActionResult Index()
         {
-            InitilizeRepository();
             if (Session["UserId"] != null)
             {
                 _profile = _repository.Get(Convert.ToInt32(Session["UserId"]));

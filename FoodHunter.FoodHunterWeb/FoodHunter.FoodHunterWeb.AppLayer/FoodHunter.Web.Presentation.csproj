@@ -126,11 +126,12 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AppAdminController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\FoodController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
-    <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\FoodieController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\RestaurantAdminController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
@@ -138,10 +139,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Annotations\Validate.cs" />
     <Compile Include="ViewModels\Base\AppAdminBaseViewModel.cs" />
     <Compile Include="ViewModels\Base\FoodBaseViewModel.cs" />
     <Compile Include="ViewModels\Base\NewsBaseViewModel.cs" />
-    <Compile Include="ViewModels\Base\ProfileBaseViewModel.cs" />
+    <Compile Include="ViewModels\Base\FoodieBaseViewModel.cs" />
     <Compile Include="ViewModels\Base\RestaurantAdminBaseViewModel.cs" />
     <Compile Include="ViewModels\Base\RestaurantBaseViewModel.cs" />
     <Compile Include="ViewModels\Create\FoodCreateViewModel.cs" />
@@ -149,10 +151,10 @@
     <Compile Include="ViewModels\Create\RestaurantCreateViewModel.cs" />
     <Compile Include="ViewModels\Create\ReviewCreateViewModel.cs" />
     <Compile Include="ViewModels\Details\FoodDetailsViewModel.cs" />
-    <Compile Include="ViewModels\Details\ProfileDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Details\FoodieDetailsViewModel.cs" />
     <Compile Include="ViewModels\Details\RestaurantAdminDetailsViewModel.cs" />
     <Compile Include="ViewModels\Details\RestaurantDetailsViewModel.cs" />
-    <Compile Include="ViewModels\Edit\ProfileEditViewModel.cs" />
+    <Compile Include="ViewModels\Edit\FoodieEditViewModel.cs" />
     <Compile Include="ViewModels\Edit\RestaurantAdminEditViewModel.cs" />
     <Compile Include="ViewModels\Edit\RestaurantEditViewModel.cs" />
     <Compile Include="ViewModels\List\ApprovalListViewModel.cs" />
@@ -174,9 +176,9 @@
     <Content Include="Views\News\Create.cshtml" />
     <Content Include="Views\Registration\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\Profile\Index.cshtml" />
-    <Content Include="Views\Profile\Edit.cshtml" />
-    <Content Include="Views\Restaurant\Index.cshtml" />
+    <Content Include="Views\Foodie\Index.cshtml" />
+    <Content Include="Views\Foodie\Edit.cshtml" />
+    <Content Include="Views\Restaurant\Details.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -195,9 +197,9 @@
     <Content Include="Views\Home\FoodList.cshtml" />
     <Content Include="Views\Home\TopRestaurantList.cshtml" />
     <Content Include="Views\Shared\_Layout_Restaurant_Admin.cshtml" />
-    <Content Include="Views\Review\FoodReviewCreate.cshtml" />
-    <Content Include="Views\Review\FoodReviewList.cshtml" />
-    <Content Include="Views\Profile\Details.cshtml" />
+    <Content Include="Views\Review\Create.cshtml" />
+    <Content Include="Views\Review\List.cshtml" />
+    <Content Include="Views\Foodie\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

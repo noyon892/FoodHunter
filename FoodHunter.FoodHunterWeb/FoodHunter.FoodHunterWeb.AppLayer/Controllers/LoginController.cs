@@ -8,7 +8,7 @@ using FoodHunter.Web.DataLayer;
 
 namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : BaseController
     {
         private readonly IUserRepository _reposiroty;
 
@@ -18,13 +18,14 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
         }
 
         // GET: Login
-        public ActionResult Index()
+        public ActionResult Index(string targetUrl)
         {
+            ViewBag.ReturnUrl = targetUrl;
             return View();
         }
 
         [HttpPost]
-        public ActionResult Index(LoginViewModel input)
+        public ActionResult Index(LoginViewModel input, string returnUrl)
         {
             var user = _reposiroty.GetAll().SingleOrDefault(u => u.UserName == input.UserName && u.Password == input.Password);
             if (user != null)
@@ -36,7 +37,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 
                 if(user.Type == UserType.Foodie)
                 {
-                    return RedirectToAction("Index", "Profile");
+                    return RedirectToLocal(returnUrl);
                 }
                 else if (user.Type == UserType.RestaurantAdmin)
                 {

@@ -15,54 +15,19 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
     public class RestaurantController : Controller
     {
         private readonly IRestaurantRepository _restaurantContext;
-        private readonly IFoodieRepository _foodieContext;
         private readonly IRestaurantAdminRepository _restaurantAdminContext;
-        private readonly IFoodRepository _foodContext;
-        private readonly IReviewRepository _reviewContext;
 
         public RestaurantController()
         {
             _restaurantContext = Factory.GetRestaurantRepository();
-            _foodieContext = Factory.GetFoodieRepository();
             _restaurantAdminContext = Factory.GetRestaurantAdminRepository();
-            _foodContext = Factory.GetFoodRepository();
-            _reviewContext = Factory.GetReviewRepository();
         }
 
-
-
+        
         // GET: Restaurant
         public ActionResult Index(int id)
         {
-            Restaurant restaurant = _restaurantContext.Get(id);
-            restaurant.FoodMenu =
-                _foodContext.GetAll().Where(f => f.RestaurantId == restaurant.RestaurantId).ToList();
-            restaurant.Reviews = _reviewContext.GetAll().Where(r => r.RestaurantId == restaurant.RestaurantId).ToList();
-            RestaurantAdmin restaurantAdmin = _restaurantAdminContext.Get(restaurant.UserId);
-
-            #region Setting Values to View Model
-            //Copy restaurant values to restaurantbase
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<Restaurant, RestaurantBaseViewModel>());
-            var mapper = config.CreateMapper();
-
-            //Copy values
-            RestaurantBaseViewModel restaurantBase = mapper.Map<RestaurantBaseViewModel>(restaurant);
-            
-            //Copy restaurant admin values to restaurantAdminBase
-            config = new MapperConfiguration(cfg => cfg.CreateMap<RestaurantAdmin, RestaurantAdminBaseViewModel>());
-            mapper = config.CreateMapper();
-
-            //Copy values
-            RestaurantAdminBaseViewModel restaurantAdminBase = mapper.Map<RestaurantAdminBaseViewModel>(restaurantAdmin);
-
-            RestaurantDetailsViewModel restaurantDetails = new RestaurantDetailsViewModel
-            {
-                RestaurantBase = restaurantBase,
-                ProfileDetails = restaurantAdminBase
-            };
-            #endregion
-
-            return View(restaurantDetails);
+            return View();
         }
 
         [HttpGet]
@@ -111,6 +76,37 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 
             return RedirectToAction("Index","RestaurantAdmin");
            
+        }
+
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            Restaurant restaurant = _restaurantContext.Get(id);
+            RestaurantAdmin restaurantAdmin = _restaurantAdminContext.Get(restaurant.UserId);
+
+            #region Setting Values to View Model
+            //Copy restaurant values to restaurantbase
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Restaurant, RestaurantBaseViewModel>());
+            var mapper = config.CreateMapper();
+
+            //Copy values
+            RestaurantBaseViewModel restaurantBase = mapper.Map<RestaurantBaseViewModel>(restaurant);
+
+            //Copy restaurant admin values to restaurantAdminBase
+            config = new MapperConfiguration(cfg => cfg.CreateMap<RestaurantAdmin, RestaurantAdminBaseViewModel>());
+            mapper = config.CreateMapper();
+
+            //Copy values
+            RestaurantAdminBaseViewModel restaurantAdminBase = mapper.Map<RestaurantAdminBaseViewModel>(restaurantAdmin);
+
+            RestaurantDetailsViewModel restaurantDetails = new RestaurantDetailsViewModel
+            {
+                RestaurantBase = restaurantBase,
+                ProfileDetails = restaurantAdminBase
+            };
+            #endregion
+
+            return View(restaurantDetails);
         }
     }
 }

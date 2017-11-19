@@ -21,7 +21,7 @@
                 @Html.DisplayNameFor(model => model.Rating)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FoodPicture)
+                @Html.DisplayNameFor(model => model.Picture)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Comment)
@@ -32,13 +32,13 @@
     @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.ActionLink(item.UserName, "Details", "Profile", new{@id=item.UserId}, null)
+                @Html.ActionLink(item.UserName, "Details", "Foodie", new{@id=item.UserId}, null)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Rating)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FoodPicture)
+                @Html.DisplayFor(modelItem => item.Picture)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Comment)

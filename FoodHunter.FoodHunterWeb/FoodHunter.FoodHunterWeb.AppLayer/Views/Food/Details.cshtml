@@ -1,5 +1,4 @@
-﻿@using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Update
-@using FoodHunter.Web.DataLayer
+﻿@using FoodHunter.Web.DataLayer
 @model FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details.FoodDetailsViewModel
 
 @{
@@ -53,14 +52,14 @@
 
 </dl>
 <p>
-    @Html.ActionLink("Edit", "Edit", new {  id = Url.RequestContext.RouteData.Values["id"] })
+    @Html.ActionLink("Edit", "Edit", new {  @id = Url.RequestContext.RouteData.Values["id"] })
 </p>
 @{
-    Html.RenderAction("FoodReviewList","Review", new { @id = Url.RequestContext.RouteData.Values["id"] });
+    Html.RenderAction("List","Review", new { @id = Url.RequestContext.RouteData.Values["id"], @controller = Url.RequestContext.RouteData.Values["controller"] });
 }
 ;
 
 @if (Session["UserId"] != null && Session["UserType"].ToString() == UserType.Foodie.ToString())
 {
-    Html.RenderAction("FoodReviewCreate","Review", new{@id = Url.RequestContext.RouteData.Values["id"] });
+    Html.RenderAction("Create","Review", new{@id = Url.RequestContext.RouteData.Values["id"], @controller = Url.RequestContext.RouteData.Values["controller"] });
 }

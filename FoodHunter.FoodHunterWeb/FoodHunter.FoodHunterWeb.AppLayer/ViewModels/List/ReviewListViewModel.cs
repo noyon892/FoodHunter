@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace FoodHunter.FoodHunterWeb.AppLayer.ViewModels.List
 {
@@ -12,7 +8,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.ViewModels.List
         public int UserId { get; set; }
         public string UserName { get; set; }
         public byte Rating { get; set; }
-        public string FoodPicture { get; set; }
+        public string Picture { get; set; }
         public string Comment { get; set; }
 
     }

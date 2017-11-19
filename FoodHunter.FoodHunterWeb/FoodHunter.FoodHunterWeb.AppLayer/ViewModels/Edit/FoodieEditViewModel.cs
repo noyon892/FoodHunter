@@ -6,7 +6,7 @@ using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Base;
 
 namespace FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Edit
 {
-    public class ProfileEditViewModel : ProfileBaseViewModel
+    public class FoodieEditViewModel : FoodieBaseViewModel
     {
     }
 }

@@ -7,20 +7,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FoodHunter.FoodHunterWeb.AppLayer.Helpers.Annotations;
 using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details;
 
 namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 {
     public class FoodController : Controller
     {
-        IFoodRepository _repository;
-        private IReviewRepository _reviewRepository;
+        private readonly IFoodRepository _repository;
+        private readonly IReviewRepository _reviewRepository;
         public FoodController()
         {
             _repository = Factory.GetFoodRepository();
             _reviewRepository = Factory.GetReviewRepository();
         }
 
+        [Validate]
         // GET: Food
         public ActionResult Index(int id)
         {
@@ -77,7 +79,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
             return RedirectToAction("Details", new {@id = foodToEdit.FoodId});
         }
 
-        [HttpGet]
+        [HttpGet, Validate]
         public ActionResult Details(int id)
         {
             Food food = _repository.Get(id);

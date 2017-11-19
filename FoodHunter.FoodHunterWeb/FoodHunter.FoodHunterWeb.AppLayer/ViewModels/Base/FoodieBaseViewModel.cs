@@ -6,7 +6,7 @@ using System.Web;
 
 namespace FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Base
 {
-    public class ProfileBaseViewModel
+    public class FoodieBaseViewModel
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
