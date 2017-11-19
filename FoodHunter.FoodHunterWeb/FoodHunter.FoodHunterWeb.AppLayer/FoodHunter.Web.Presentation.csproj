@@ -119,7 +119,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -132,6 +134,7 @@
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\RestaurantAdminController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
+    <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -156,6 +159,7 @@
     <Compile Include="ViewModels\List\FoodListViewModel.cs" />
     <Compile Include="ViewModels\List\NewsListViewModel.cs" />
     <Compile Include="ViewModels\List\RestaurantListViewModel.cs" />
+    <Compile Include="ViewModels\List\ReviewListViewModel.cs" />
     <Compile Include="ViewModels\List\TopRestaurantListViewModel.cs" />
     <Compile Include="ViewModels\List\UserListViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -191,6 +195,9 @@
     <Content Include="Views\Home\FoodList.cshtml" />
     <Content Include="Views\Home\TopRestaurantList.cshtml" />
     <Content Include="Views\Shared\_Layout_Restaurant_Admin.cshtml" />
+    <Content Include="Views\Review\FoodReviewCreate.cshtml" />
+    <Content Include="Views\Review\FoodReviewList.cshtml" />
+    <Content Include="Views\Profile\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -45,7 +45,27 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 
             return RedirectToAction("Index", "Login");
         }
-        
+
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            _profile = _repository.Get(id);
+
+
+            //Create Map
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Foodie, ProfileDetailsViewModel>());
+            var mapper = config.CreateMapper();
+
+            //Copy values
+            ProfileDetailsViewModel profileDetails = mapper.Map<ProfileDetailsViewModel>(_profile);
+            if (_profile != null)
+            {
+                profileDetails.CheckIns = _profile.CheckIns;
+            }
+
+            return View(profileDetails);
+        }
+
 
         [HttpGet]
         public ActionResult Edit()

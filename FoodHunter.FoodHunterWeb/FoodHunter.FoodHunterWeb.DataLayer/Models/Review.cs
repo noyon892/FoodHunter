@@ -19,7 +19,7 @@ namespace FoodHunter.Web.DataLayer
         [ForeignKey("UserId")]
         public Foodie Reviewer { get; set; }
 
-        public int RestaurantId { get; set; }
-        public int FoodId { get; set; }
+        public int? RestaurantId { get; set; }
+        public int? FoodId { get; set; }
     }
 }

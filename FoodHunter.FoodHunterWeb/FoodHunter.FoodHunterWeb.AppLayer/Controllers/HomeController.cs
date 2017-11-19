@@ -11,9 +11,9 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 {
     public class HomeController : Controller
     {
-        IFoodRepository _foodRepository;
-        IRestaurantRepository _restaurantRepository;
-        private IReviewRepository _reviewRepository;
+        readonly IFoodRepository _foodRepository;
+        readonly IRestaurantRepository _restaurantRepository;
+        private readonly IReviewRepository _reviewRepository;
 
         public HomeController()
         {
@@ -36,7 +36,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
         [HttpGet]
         public ActionResult TopRestaurantList()
         {
-            int rating=0;
+            int totalRating = 0;
             //Create Map
             var config = new MapperConfiguration(cfg => cfg.CreateMap<Restaurant, TopRestaurantListViewModel>());
             var mapper = config.CreateMapper();
@@ -47,14 +47,21 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
             {
                 List<Review> reviews = _reviewRepository.GetAll()
                     .Where(r => r.RestaurantId == restaurant.RestaurantId).ToList();
-                foreach (Review review in reviews)
+
+                if(reviews.Count>0)
                 {
-                    rating += review.Rating;
+                    foreach (Review review in reviews)
+                    {
+                        totalRating  += review.Rating;
+                    }
                 }
                 TopRestaurantListViewModel topRestaurantListViewModel = mapper.Map<TopRestaurantListViewModel>(restaurant);
-                topRestaurantListViewModel.Rating = rating / reviews.Count;
+                if (reviews.Count > 0)
+                    topRestaurantListViewModel.Rating = totalRating  / reviews.Count;
+
                 viewModelsList.Add(topRestaurantListViewModel);
             }
+
             return View(viewModelsList);
         }
 

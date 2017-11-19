@@ -91,19 +91,5 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 
             return View(foodDetails);
         }
-
-        [HttpPost]
-        public ActionResult Details(int id, ReviewCreateViewModel input)
-        {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<ReviewCreateViewModel, Review>());
-            var mapper = config.CreateMapper();
-
-            //Copy values
-            Review reviewToCreate = mapper.Map<Review>(input);
-
-            _reviewRepository.Insert(reviewToCreate);
-
-            return View();
-        }
     }
 }
