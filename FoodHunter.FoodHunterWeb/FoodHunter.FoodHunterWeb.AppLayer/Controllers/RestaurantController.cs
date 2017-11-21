@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using FoodHunter.FoodHunterWeb.AppLayer.Helpers;
 using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Base;
 using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details;
 using FoodHunter.Web.DataLayer;
@@ -16,11 +17,13 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
     {
         private readonly IRestaurantRepository _restaurantContext;
         private readonly IRestaurantAdminRepository _restaurantAdminContext;
+        private Facade facade;
 
         public RestaurantController()
         {
             _restaurantContext = Factory.GetRestaurantRepository();
             _restaurantAdminContext = Factory.GetRestaurantAdminRepository();
+            facade = new Facade();
         }
 
         
@@ -33,14 +36,20 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            Restaurant restaurantToUpdate = _restaurantContext.Get(id);
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<Restaurant, RestaurantEditViewModel>());
-            var mapper = config.CreateMapper();
-            //Copy values
+            if (facade.IsValidRestaurantAdmin(Convert.ToInt32(Session["UserId"]), id))
+            {
+                Restaurant restaurantToUpdate = _restaurantContext.Get(id);
+                var config = new MapperConfiguration(cfg => cfg.CreateMap<Restaurant, RestaurantEditViewModel>());
+                var mapper = config.CreateMapper();
+                //Copy values
 
-            RestaurantEditViewModel restaurantEdit = mapper.Map<RestaurantEditViewModel>(restaurantToUpdate);
-            TempData["RestaurantId"] = id;
-            return View(restaurantEdit);
+                RestaurantEditViewModel restaurantEdit = mapper.Map<RestaurantEditViewModel>(restaurantToUpdate);
+                TempData["RestaurantId"] = id;
+
+                return View(restaurantEdit);
+            }
+
+            return RedirectToAction("Index", "RestaurantAdmin");
         }
 
         [HttpPost]
@@ -55,7 +64,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
             restaurantToUpdate.UserId = Convert.ToInt32(Session["UserId"]);
             _restaurantContext.Update(restaurantToUpdate);
 
-            return RedirectToAction("Index", new {@id = restaurantToUpdate.RestaurantId});
+            return RedirectToAction("Details", new {@id = restaurantToUpdate.RestaurantId});
         }
 
         [HttpGet]

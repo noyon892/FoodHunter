@@ -83,7 +83,7 @@
             {
                 <tr>
                     <td>
-                        @Html.ActionLink(""+item.RestaurantName+"", "Index", "Restaurant", new { id=item.RestaurantId }, null)
+                        @Html.ActionLink(""+item.RestaurantName+"", "Details", "Restaurant", new { id=item.RestaurantId }, null)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.CurrentStatus)

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<FoodHunter.FoodHunterWeb.AppLayer.ViewModels.List.FoodListViewModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>List</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FoodName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FoodPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FoodPicture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.ActionLink(item.FoodName, "Details", "Food", new { @id = item.FoodId }, null)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoodPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoodPicture)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

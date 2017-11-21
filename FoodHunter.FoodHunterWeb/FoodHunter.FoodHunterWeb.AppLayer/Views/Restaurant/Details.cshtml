@@ -63,6 +63,11 @@
     
 <h2>Food Menu</h2>
 @{
+    Html.RenderAction("List", "Food", new { @id = Url.RequestContext.RouteData.Values["id"] });
+}
+
+<br />    <h2>Reviews</h2>
+@{
     Html.RenderAction("List","Review", new {id = Url.RequestContext.RouteData.Values["id"], @controller = Url.RequestContext.RouteData.Values["controller"] });
 }
 ;

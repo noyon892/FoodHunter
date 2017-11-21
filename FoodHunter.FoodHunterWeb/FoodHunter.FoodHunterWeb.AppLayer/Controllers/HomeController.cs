@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using FoodHunter.FoodHunterWeb.AppLayer.Helpers;
 using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.List;
 using FoodHunter.Web.DataLayer;
 
@@ -11,15 +12,15 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 {
     public class HomeController : Controller
     {
-        readonly IFoodRepository _foodRepository;
-        readonly IRestaurantRepository _restaurantRepository;
-        private readonly IReviewRepository _reviewRepository;
+        private readonly IFoodRepository _foodRepository;
+        private readonly IRestaurantRepository _restaurantRepository;
+        private readonly Facade _facade;
 
         public HomeController()
         {
             _foodRepository = Factory.GetFoodRepository();
             _restaurantRepository = Factory.GetRestaurantRepository();
-            _reviewRepository = Factory.GetReviewRepository();
+            _facade = new Facade();
         }
         // GET: Home
         public ActionResult Index()
@@ -36,7 +37,6 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
         [HttpGet]
         public ActionResult TopRestaurantList()
         {
-            int totalRating = 0;
             //Create Map
             var config = new MapperConfiguration(cfg => cfg.CreateMap<Restaurant, TopRestaurantListViewModel>());
             var mapper = config.CreateMapper();
@@ -45,21 +45,10 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 
             foreach (Restaurant restaurant in _restaurantRepository.GetAll())
             {
-                List<Review> reviews = _reviewRepository.GetAll()
-                    .Where(r => r.RestaurantId == restaurant.RestaurantId).ToList();
+                TopRestaurantListViewModel topRestaurant = mapper.Map<TopRestaurantListViewModel>(restaurant);
+                topRestaurant.Rating = _facade.GetRestaurantRating(restaurant.RestaurantId);
 
-                if(reviews.Count>0)
-                {
-                    foreach (Review review in reviews)
-                    {
-                        totalRating  += review.Rating;
-                    }
-                }
-                TopRestaurantListViewModel topRestaurantListViewModel = mapper.Map<TopRestaurantListViewModel>(restaurant);
-                if (reviews.Count > 0)
-                    topRestaurantListViewModel.Rating = totalRating  / reviews.Count;
-
-                viewModelsList.Add(topRestaurantListViewModel);
+                viewModelsList.Add(topRestaurant);
             }
 
             return View(viewModelsList);
@@ -93,6 +82,5 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
         {
             return View();
         }
-
     }
 }

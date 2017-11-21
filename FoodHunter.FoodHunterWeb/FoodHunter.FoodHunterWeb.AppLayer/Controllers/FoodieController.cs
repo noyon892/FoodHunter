@@ -22,7 +22,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 
 
         // GET: UserProfile
-        [Validate]
+        [ValidateLogin]
         public ActionResult Index()
         {
             _profile = _repository.Get(Convert.ToInt32(Session["UserId"]));

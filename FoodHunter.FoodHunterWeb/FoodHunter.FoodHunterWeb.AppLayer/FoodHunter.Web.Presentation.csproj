@@ -139,7 +139,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\Annotations\Validate.cs" />
+    <Compile Include="Helpers\Annotations\ValidateLogin.cs" />
+    <Compile Include="Helpers\Facade.cs" />
     <Compile Include="ViewModels\Base\AppAdminBaseViewModel.cs" />
     <Compile Include="ViewModels\Base\FoodBaseViewModel.cs" />
     <Compile Include="ViewModels\Base\NewsBaseViewModel.cs" />
@@ -200,6 +201,7 @@
     <Content Include="Views\Review\Create.cshtml" />
     <Content Include="Views\Review\List.cshtml" />
     <Content Include="Views\Foodie\Details.cshtml" />
+    <Content Include="Views\Food\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

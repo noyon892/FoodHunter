@@ -8,8 +8,8 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.ViewModels.List
 {
     public class RestaurantListViewModel
     {
-        public string RestaurantName { get; set; }
         public int RestaurantId { get; set; }
+        public string RestaurantName { get; set; }
         public Status CurrentStatus { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace FoodHunter.FoodHunterWeb.AppLayer.Helpers.Annotations
 {
-    public class Validate:ActionFilterAttribute
+    public class ValidateLogin : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {

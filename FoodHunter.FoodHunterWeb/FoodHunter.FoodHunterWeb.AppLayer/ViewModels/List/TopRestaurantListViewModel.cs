@@ -8,9 +8,9 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.ViewModels.List
 {
     public class TopRestaurantListViewModel
     {
-        public int ReataurantID { get; set; }
+        public int RestaurantId { get; set; }
         public string RestaurantName { get; set; }
         public string Location { get; set; }
-        public int Rating { get; set; }
+        public double Rating { get; set; }
     }
 }

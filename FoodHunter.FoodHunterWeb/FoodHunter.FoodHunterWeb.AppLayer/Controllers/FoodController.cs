@@ -7,26 +7,51 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FoodHunter.FoodHunterWeb.AppLayer.Helpers;
 using FoodHunter.FoodHunterWeb.AppLayer.Helpers.Annotations;
 using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details;
+using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.List;
 
 namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 {
     public class FoodController : Controller
     {
-        private readonly IFoodRepository _repository;
-        private readonly IReviewRepository _reviewRepository;
+        private readonly IFoodRepository _foodContext;
+        private readonly IReviewRepository _reviewContext;
+        private readonly Facade _facade;
         public FoodController()
         {
-            _repository = Factory.GetFoodRepository();
-            _reviewRepository = Factory.GetReviewRepository();
+            _foodContext = Factory.GetFoodRepository();
+            _reviewContext = Factory.GetReviewRepository();
+            _facade = new Facade();
         }
 
-        [Validate]
+        [ValidateLogin]
         // GET: Food
         public ActionResult Index(int id)
         {
             return RedirectToAction("Details",id);
+        }
+
+        [HttpGet]
+        [ChildActionOnly]
+        public ActionResult List(int id)
+        {
+            List<Food> foods = _foodContext.GetAll().Where(r => r.RestaurantId == id).ToList();
+            List<FoodListViewModel> foodMenu = new List<FoodListViewModel>();
+            
+            //create Map
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Food, FoodListViewModel>());
+            var mapper = config.CreateMapper();
+            //Copy values
+            foreach (Food food in foods)
+            {
+                FoodListViewModel foodViewModel  = mapper.Map<FoodListViewModel>(food);
+                foodViewModel.Rating = _facade.GetFoodRating(food.FoodId);
+                foodMenu.Add(foodViewModel);
+            }
+            
+            return PartialView(foodMenu);
         }
 
         [HttpGet]
@@ -44,7 +69,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 
             Food foodToInsert = mapper.Map<Food>(input);
             foodToInsert.RestaurantId = Convert.ToInt32(TempData["RestaurantId"]);
-            _repository.Insert(foodToInsert);
+            _foodContext.Insert(foodToInsert);
 
             return RedirectToAction("Index","Restaurant", new { @id = foodToInsert.RestaurantId });
         }
@@ -52,16 +77,21 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            Food foodToUpdate = _repository.Get(id);
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<Food, FoodEditViewModel>());
-            var mapper = config.CreateMapper();
-            //Copy values
+            if(_facade.IsValidFoodAdmin(Convert.ToInt32(Session["UserId"]),id))
+            {
+                Food foodToUpdate = _foodContext.Get(id);
+                var config = new MapperConfiguration(cfg => cfg.CreateMap<Food, FoodEditViewModel>());
+                var mapper = config.CreateMapper();
+                //Copy values
 
-            FoodEditViewModel foodEdit = mapper.Map<FoodEditViewModel>(foodToUpdate);
-            TempData["FoodId"] = id;
-            TempData["RestaurantId"] = foodToUpdate.RestaurantId;
+                FoodEditViewModel foodEdit = mapper.Map<FoodEditViewModel>(foodToUpdate);
+                TempData["FoodId"] = id;
+                TempData["RestaurantId"] = foodToUpdate.RestaurantId;
 
-            return View(foodEdit);
+                return View(foodEdit);   
+            }
+
+            return RedirectToAction("Index", "RestaurantAdmin");
         }
 
         [HttpPost]
@@ -74,16 +104,16 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
             Food foodToEdit = mapper.Map<Food>(input);
             foodToEdit.FoodId = Convert.ToInt32(TempData["FoodId"]);
             foodToEdit.RestaurantId = Convert.ToInt32(TempData["RestaurantId"]);
-            _repository.Update(foodToEdit);
+            _foodContext.Update(foodToEdit);
 
             return RedirectToAction("Details", new {@id = foodToEdit.FoodId});
         }
 
-        [HttpGet, Validate]
+        [HttpGet, ValidateLogin]
         public ActionResult Details(int id)
         {
-            Food food = _repository.Get(id);
-            food.Reviews = _reviewRepository.GetAll().Where(r => r.FoodId == id).ToList();
+            Food food = _foodContext.Get(id);
+            food.Reviews = _reviewContext.GetAll().Where(r => r.FoodId == id).ToList();
 
             var config = new MapperConfiguration(cfg => cfg.CreateMap<Food, FoodDetailsViewModel>());
             var mapper = config.CreateMapper();
