@@ -38,6 +38,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
         {
             List<Food> foods = _foodContext.GetAll().Where(r => r.RestaurantId == id).ToList();
             List<FoodListViewModel> foodMenu = new List<FoodListViewModel>();
+            ViewBag.RestaurantId = id;
             
             //create Map
             var config = new MapperConfiguration(cfg => cfg.CreateMap<Food, FoodListViewModel>());
@@ -70,7 +71,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
             foodToInsert.RestaurantId = Convert.ToInt32(TempData["RestaurantId"]);
             _foodContext.Insert(foodToInsert);
 
-            return RedirectToAction("Index","Restaurant", new { @id = foodToInsert.RestaurantId });
+            return RedirectToAction("Details","Restaurant", new { @id = foodToInsert.RestaurantId });
         }
 
         [HttpGet]
