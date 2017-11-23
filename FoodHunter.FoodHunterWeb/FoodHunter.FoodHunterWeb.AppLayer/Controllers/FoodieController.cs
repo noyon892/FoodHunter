@@ -104,18 +104,9 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 
                 if(input.PostedPicture != null )
                     FilePreProcessor(input, userProfile);
-
-                try
-                {
-                    _repository.Update(userProfile);
-                }
-                catch (Exception e)
-                {
-                    _repository.Insert(userProfile);
-                    _profile = _repository.Get(Convert.ToInt32(Session["UserId"]));
-
-                    Console.WriteLine(e);
-                }
+                
+                _repository.Update(userProfile);
+                
 
                 return RedirectToAction("Index");
             }

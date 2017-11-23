@@ -104,18 +104,9 @@ namespace FoodHunter.Web.AppLayer.Controllers
 
                 RestaurantAdmin userProfile = mapper.Map<RestaurantAdmin>(input);
                 userProfile.UserId = Convert.ToInt32(Session["UserId"]);
-
-                try
-                {
-                    _repository.Update(userProfile);
-                }
-                catch (Exception e)
-                {
-                    _repository.Insert(userProfile);
-                    _profile = _repository.Get(Convert.ToInt32(Session["UserId"]));
-
-                    Console.WriteLine(e);
-                }
+                
+                _repository.Update(userProfile);
+                
 
                 return RedirectToAction("Index");
             }

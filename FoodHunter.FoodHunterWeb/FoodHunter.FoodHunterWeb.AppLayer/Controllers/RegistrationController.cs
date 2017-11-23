@@ -40,6 +40,8 @@ namespace FoodHunter.Web.AppLayer.Controllers
                     user.RegisteredOn = DateTime.Now;
                     user.CurrentStatus = Status.Active;
                     _repository.Insert(user);
+                    
+                    InitializeProfile(user);
 
                     return RedirectToAction("Index", "Login");
                 }
@@ -54,6 +56,25 @@ namespace FoodHunter.Web.AppLayer.Controllers
             }
             
             return View(input);
+        }
+
+        private void InitializeProfile(User user)
+        {
+            if (user.Type == UserType.Foodie)
+            {
+                IFoodieRepository foodie = Factory.GetFoodieRepository();
+                foodie.Insert(new Foodie { UserId = user.UserId });
+            }
+            else if (user.Type == UserType.RestaurantAdmin)
+            {
+                IRestaurantAdminRepository restaurantAdminRepository = Factory.GetRestaurantAdminRepository();
+                restaurantAdminRepository.Insert(new RestaurantAdmin { UserId = user.UserId });
+            }
+            else if (user.Type == UserType.AppAdmin)
+            {
+                IAppAdminRepository appAdminRepository = Factory.GetAppAdminRepository();
+                appAdminRepository.Insert(new AppAdmin { UserId = user.UserId });
+            }
         }
     }
 }

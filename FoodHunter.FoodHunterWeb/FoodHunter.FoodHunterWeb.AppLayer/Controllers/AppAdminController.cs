@@ -11,8 +11,8 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 {
     public class AppAdminController : Controller
     {
-        IUserRepository _userRepository;
-        IRestaurantRepository _restaurantRepository;
+        readonly IUserRepository _userRepository;
+        readonly IRestaurantRepository _restaurantRepository;
 
         public AppAdminController()
         {
