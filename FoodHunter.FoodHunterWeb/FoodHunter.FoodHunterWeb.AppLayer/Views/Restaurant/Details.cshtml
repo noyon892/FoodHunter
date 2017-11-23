@@ -70,7 +70,7 @@
 @{
     Html.RenderAction("List","Review", new {id = Url.RequestContext.RouteData.Values["id"], @controller = Url.RequestContext.RouteData.Values["controller"] });
 }
-;
+
 
 @if (Session["UserId"] != null && Session["UserType"].ToString() == UserType.Foodie.ToString())
 {

@@ -1,60 +1,58 @@
 ﻿@model IEnumerable<FoodHunter.Web.AppLayer.ViewModels.List.NewsListViewModel>
 
 @{
-    ViewBag.Title = "News";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Restaurant_Admin.cshtml";
 }
 
-<!DOCTYPE html>
+<h2>Index</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-</head>
-<body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NewsPicture)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NewsBody)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RestaurantName)
-            </th>
-            <th></th>
-        </tr>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NewsPicture)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NewsBody)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NewsId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RestaurantName)
+        </th>
+        <th></th>
+    </tr>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NewsPicture)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NewsBody)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RestaurantName)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>
-            </tr>
-        }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NewsPicture)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NewsBody)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NewsId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RestaurantName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
 
-    </table>
-</body>
-</html>
+</table>
