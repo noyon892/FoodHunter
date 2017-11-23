@@ -157,6 +157,7 @@
     <Compile Include="ViewModels\Details\RestaurantAdminDetailsViewModel.cs" />
     <Compile Include="ViewModels\Details\RestaurantDetailsViewModel.cs" />
     <Compile Include="ViewModels\Edit\FoodieEditViewModel.cs" />
+    <Compile Include="ViewModels\Edit\NewsEditViewModel.cs" />
     <Compile Include="ViewModels\Edit\RestaurantAdminEditViewModel.cs" />
     <Compile Include="ViewModels\Edit\RestaurantEditViewModel.cs" />
     <Compile Include="ViewModels\List\ApprovalListViewModel.cs" />
@@ -206,6 +207,7 @@
     <Content Include="Views\Food\List.cshtml" />
     <Content Include="Views\News\Details.cshtml" />
     <Content Include="Views\RestaurantAdmin\ProfileView.cshtml" />
+    <Content Include="Views\News\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
