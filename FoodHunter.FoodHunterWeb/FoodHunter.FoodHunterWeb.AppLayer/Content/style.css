@@ -31,7 +31,12 @@ li.access a {
     background-color: #d9d9d9;
 }
 
-button.btn.btn-info.btn-lg.btn-group-justified.my-btn {
-    margin: 10px auto;
+.my-btn 
+{
+    margin: 10px auto; 
+}
+.my-btn a{
+    color:#000 !important;
+    font-weight: bolder;
 }
 
