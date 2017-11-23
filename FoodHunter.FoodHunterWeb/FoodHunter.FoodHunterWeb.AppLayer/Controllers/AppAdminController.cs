@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
 using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.List;
 using FoodHunter.Web.DataLayer;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
