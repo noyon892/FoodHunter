@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using FoodHunter.FoodHunterWeb.AppLayer.Helpers.Annotations;
 using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Details;
+using FoodHunter.FoodHunterWeb.AppLayer.ViewModels.Edit;
 using FoodHunter.Web.AppLayer.ViewModels.Create;
 using FoodHunter.Web.AppLayer.ViewModels.List;
 using FoodHunter.Web.DataLayer;
@@ -86,6 +87,37 @@ namespace FoodHunter.Web.AppLayer.Controllers
             _newsContext.Insert(news);
             return RedirectToAction("Index","News");
         }
+
+        [HttpPost]
+        public ActionResult Edit(NewsEditViewModel newsEditViewModel,int id)
+        {
+            var config = new MapperConfiguration(cfg=>cfg.CreateMap<NewsEditViewModel,News>());
+            var mapper = config.CreateMapper();
+
+            News news = mapper.Map<News>(newsEditViewModel);
+            news.NewsId = id;
+            news.UserId = Convert.ToInt32(Session["UserId"]);
+            news.RestaurantId = _newsContext.Get(id).RestaurantId;
+            _newsContext.Update(news);
+            return RedirectToAction("Index", "News");
+        }
+
+        [HttpGet]
+        [ValidateLogin]
+        public ActionResult Edit(int id)
+        {
+            News newsToUpdate = _newsContext.Get(id);
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<News, NewsEditViewModel>());
+            var mapper = config.CreateMapper();
+            //Copy values
+
+            NewsEditViewModel newsEdit = mapper.Map<NewsEditViewModel>(newsToUpdate);
+            TempData["NewsId"] = id;
+            TempData["RestaurantId"] = newsToUpdate.RestaurantId;
+
+            return View(newsEdit);
+        }
+
 
         [HttpGet]
         public ActionResult Details(int id)

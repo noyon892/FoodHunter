@@ -25,15 +25,10 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 
         
         // GET: Restaurant
-        /*public ActionResult Index(int id)
+        public ActionResult Index(int id)
         {
-<<<<<<< HEAD
-            return View(id);
-        }
-=======
             return View();
-        }*/
->>>>>>> 76dfedcdd093a65a5ff3e7ec49b6f2eacd3e8d91
+        }
 
         [HttpGet]
         public ActionResult Edit(int id)
