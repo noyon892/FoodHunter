@@ -9,11 +9,11 @@ namespace FoodHunter.Web.AppLayer.Controllers
 {
     public class NewsController : Controller
     {
-        private readonly INewsRepository _repository;
+        private readonly INewsRepository _newsContext;
 
         public NewsController()
         {
-            _repository = Factory.GetNewsRepository();
+            _newsContext = Factory.GetNewsRepository();
         }
 
         
@@ -26,7 +26,7 @@ namespace FoodHunter.Web.AppLayer.Controllers
             //Copy values
             List<NewsListViewModel> viewModelsList = new List<NewsListViewModel>();
 
-            foreach (News news in _repository.GetAll())
+            foreach (News news in _newsContext.GetAll())
             {
                 NewsListViewModel newsListViewModel = mapper.Map<NewsListViewModel>(news);
                 viewModelsList.Add(newsListViewModel);
@@ -51,7 +51,7 @@ namespace FoodHunter.Web.AppLayer.Controllers
             var mapper = config.CreateMapper();
 
             News news = mapper.Map<News>(newsListViewModel);
-            _repository.Insert(news);
+            _newsContext.Insert(news);
             
             return RedirectToAction("Index");
         }

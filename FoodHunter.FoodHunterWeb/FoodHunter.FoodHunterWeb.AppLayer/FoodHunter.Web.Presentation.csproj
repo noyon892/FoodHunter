@@ -159,6 +159,7 @@
     <Compile Include="ViewModels\Edit\RestaurantAdminEditViewModel.cs" />
     <Compile Include="ViewModels\Edit\RestaurantEditViewModel.cs" />
     <Compile Include="ViewModels\List\ApprovalListViewModel.cs" />
+    <Compile Include="ViewModels\List\CheckInListViewModel.cs" />
     <Compile Include="ViewModels\List\FoodListViewModel.cs" />
     <Compile Include="ViewModels\List\NewsListViewModel.cs" />
     <Compile Include="ViewModels\List\RestaurantListViewModel.cs" />

@@ -52,7 +52,7 @@
             </dt>
     
             <dd>
-                @Html.DisplayFor(model => model.ProfilePicture)
+                <img src="@Html.DisplayFor(model => model.ProfilePicture)" alt="Profile Picture" style="height: 200px; width: 200px;" />
             </dd>
     
             <dt>
@@ -64,12 +64,12 @@
             </dd>
     
         </dl>
-        @if(Model != null)
+
+        @if (Model?.CheckIns != null)
         {
-            if (Model.CheckIns != null)
+            foreach (var item in Model.CheckIns)
             {
-                foreach (var item in Model.CheckIns)
-                {
+                <table class="table">
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.CheckInTime)
@@ -78,12 +78,11 @@
                             @Html.DisplayFor(modelItem => item.Restaurant)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new {/* id=item.PrimaryKey */}) |
-                            @Html.ActionLink("Details", "Details", new {/* id=item.PrimaryKey */}) |
-                            @Html.ActionLink("Delete", "Delete", new {/* id=item.PrimaryKey */})
+                            @Html.ActionLink("Edit", "Edit", new { id=item.CheckInId }) |
+                            @Html.ActionLink("Details", "Details", new { id=item.CheckInId })
                         </td>
                     </tr>
-                }
+                </table>
             }
         }
     </div>

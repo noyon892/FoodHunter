@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using FoodHunter.FoodHunterWeb.AppLayer.Helpers.Annotations;
@@ -90,6 +92,7 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
         {
             if (Session["UserId"] != null)
             {
+
                 _profile = _repository.Get(Convert.ToInt32(Session["UserId"]));
 
                 var config = new MapperConfiguration(cfg => cfg.CreateMap<FoodieEditViewModel, Foodie>());
@@ -98,6 +101,9 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
 
                 Foodie userProfile = mapper.Map<Foodie>(input);
                 userProfile.UserId = Convert.ToInt32(Session["UserId"]);
+
+                if(input.PostedPicture != null )
+                    FilePreProcessor(input, userProfile);
 
                 try
                 {
@@ -115,6 +121,23 @@ namespace FoodHunter.FoodHunterWeb.AppLayer.Controllers
             }
 
             return RedirectToAction("Index", "Login");
+        }
+
+        private void FilePreProcessor(FoodieEditViewModel input, UserProfile userProfile)
+        {
+            string path = Server.MapPath("~/Uploads/Profile/Foodie/");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            if (input.PostedPicture != null)
+            {
+                string fileName = Path.GetFileName(input.PostedPicture.FileName);
+                input.PostedPicture.SaveAs(path + fileName);
+                userProfile.ProfilePicture = "../Uploads/Profile/Foodie/"+fileName;
+                ViewBag.Message += $"<b>{fileName}</b> uploaded.<br />";
+            }
         }
     }
 }
