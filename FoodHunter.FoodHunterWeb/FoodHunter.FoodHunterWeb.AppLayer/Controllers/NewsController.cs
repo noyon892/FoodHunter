@@ -88,19 +88,6 @@ namespace FoodHunter.Web.AppLayer.Controllers
             return RedirectToAction("Index","News");
         }
 
-        [HttpPost]
-        public ActionResult Edit(NewsEditViewModel newsEditViewModel,int id)
-        {
-            var config = new MapperConfiguration(cfg=>cfg.CreateMap<NewsEditViewModel,News>());
-            var mapper = config.CreateMapper();
-
-            News news = mapper.Map<News>(newsEditViewModel);
-            news.NewsId = id;
-            news.UserId = Convert.ToInt32(Session["UserId"]);
-            news.RestaurantId = _newsContext.Get(id).RestaurantId;
-            _newsContext.Update(news);
-            return RedirectToAction("Index", "News");
-        }
 
         [HttpGet]
         [ValidateLogin]
@@ -118,6 +105,19 @@ namespace FoodHunter.Web.AppLayer.Controllers
             return View(newsEdit);
         }
 
+        [HttpPost]
+        public ActionResult Edit(NewsEditViewModel newsEditViewModel, int id)
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<NewsEditViewModel, News>());
+            var mapper = config.CreateMapper();
+
+            News news = mapper.Map<News>(newsEditViewModel);
+            news.NewsId = id;
+            news.UserId = Convert.ToInt32(Session["UserId"]);
+            news.RestaurantId = _newsContext.Get(id).RestaurantId;
+            _newsContext.Update(news);
+            return RedirectToAction("Index", "News");
+        }
 
         [HttpGet]
         public ActionResult Details(int id)
@@ -131,6 +131,29 @@ namespace FoodHunter.Web.AppLayer.Controllers
             NewsDetailsViewModel newsDetails = mapper.Map<NewsDetailsViewModel>(news);
 
             return View(newsDetails);
+        }
+
+        [HttpGet]
+        [ValidateLogin]
+        public ActionResult Delete(int id)
+        {
+            
+            News news = _newsContext.Get(id);
+
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Food, NewsDetailsViewModel>());
+            var mapper = config.CreateMapper();
+
+            //Copy values
+            NewsDetailsViewModel newsDetails = mapper.Map<NewsDetailsViewModel>(news);
+
+            return View(newsDetails);
+        }
+
+        [HttpPost,ActionName("Delete")]
+        public ActionResult DeleteConfrim(int id)
+        {
+            _newsContext.Delete(id);
+            return RedirectToAction("Index", "News");
         }
     }
 }
